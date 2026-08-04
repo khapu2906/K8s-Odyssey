@@ -12,27 +12,46 @@
 
 ### Day one
 
-You just joined a small startup as an engineer. Lucky for you — you've worked with Docker and Compose plenty before this job, so none of what's coming is unfamiliar territory. Quick refresher anyway, so the same words mean the same thing for the rest of this book: **Docker** is the tool; an **image** is a frozen, ready-to-run snapshot of an app and everything it needs; a **container** is what you get when that image actually runs; and **Docker Compose** is the file that describes several containers as one system, wired together. Nothing new there — just worth having in one place before some of these words start meaning something slightly different in Kubernetes.
-
-The product here is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:
+You just joined a small startup as an engineer. The product is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:
 
 > Clone the repo, run `docker compose up`, you're good to go.
 
-You do. Three containers start: `frontend`, `chat-api`, `postgres`. You open the browser, type a message, get an answer back. It works. Nothing about *how* surprises you — you open `docker-compose.yml` mostly to learn this specific codebase, not to relearn Docker.
+You do. Three containers start. You open the browser, type a message, get an answer back. It works. Before writing a line of code, you open `docker-compose.yml` anyway — not because the onboarding doc left you confused, but because you'd rather see what's actually running than take a one-liner's word for it.
 
 ```yaml
 services:
   frontend:
     build: ./frontend
-    ports: ["3000:3000"]
+    ports:
+      - "3000:3000"
+    depends_on:
+      - chat-api
+
   chat-api:
     build: ./chat-api
-    ports: ["8080:8080"]
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/aiworkspace
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
 ```
 
-Exactly what you expected: two services built from source, one pulled as-is. `chat-api` is the one you'll actually be shipping code to — a thin API in front of Postgres, storing every conversation a user has with the AI. Ten minutes of reading and you know what this product does and how it's currently run. That part was never going to be the hard part.
+You read it the way you'd read anyone's compose file — top to bottom, matching each block against things you already know. `frontend` and `chat-api` both have a `build:` line, so Docker's turning source code in those folders into an image before running it. `postgres` skips that entirely — `image: postgres:16`, pulled ready-made, no Dockerfile of your team's involved. `chat-api` has an `environment:` block pointing a `DATABASE_URL` at `postgres` by name, which is how it finds the database without either container knowing an IP address. And `postgres` has a named `volumes:` mount, so whatever gets written to the database survives a restart instead of vanishing with the container.
+
+None of that took real effort to work out — you've read files shaped like this one plenty of times before this job. An **image** is a frozen, ready-to-run snapshot of an app and everything it needs; a **container** is what you get when that image is actually running; **Docker** is the tool that builds and runs both; **Compose** is what lets several containers be described, and started together, as one file. That part of the job, you already know cold.
+
+**Kubernetes**, on the other hand, you don't. You've heard the word — in interviews, in conference talk titles, in job postings for companies bigger than this one. You've never had a reason to open a cluster, and nothing in this `docker-compose.yml` even hints at why you'd need to. Three containers, one laptop, one command. It's enough, right now, for what this team needs. That sentence is doing more work than it looks like — the whole book is what happens after it stops being true.
 
 You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
 
@@ -82,7 +101,7 @@ flowchart TD
 
 Chapter 3 lives inside this exact moment and works through each one in full. For now, just notice the shape: every single item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet.
 
-You already know the answer to "what is Docker, really" — a way to package an application so it runs the same way anywhere, nothing more. **Kubernetes turns out to be built on that same instinct, one level up.** It isn't a bigger, fancier Docker Compose, and it isn't your application either: it's software whose entire job is running many containers, across many machines, continuously checking that what's actually running matches what's supposed to be running, and fixing the difference without a human watching. It exists because the list above is real, and somebody has to run it, permanently, for you.
+This is where that word from your onboarding week — the one you'd only ever seen in job postings — stops being abstract: **Kubernetes** is software whose entire job is running many containers, across many machines, continuously checking that what's actually running matches what's supposed to be running, and fixing the difference without a human watching. Not a bigger, fancier Compose. It exists because the list above is real, and somebody has to run it, permanently, for you.
 
 ### Years later
 
