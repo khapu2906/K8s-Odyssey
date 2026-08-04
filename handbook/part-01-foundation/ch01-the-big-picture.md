@@ -101,20 +101,4 @@ flowchart TD
 
 You don't have a name for whatever solves all of this. Nobody on this two-person team has ever needed one before today. Chapter 3 lives inside this exact moment and works through each of these problems in full, one at a time, until a name shows up on its own. For now, just notice the shape: every item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet of them.
 
-### Years later
-
-Jump ahead a few years. AI Workspace is a real product now, running across dozens of services on Kubernetes, with a real platform team — and you're on it. One day, a new engineer joins. Onboarding used to be a page of setup instructions; now you hand them one URL. They click a button. A few minutes later, their own environment — namespace, database, ingress, monitoring, all of it — is simply there, ready. They never had to learn what a Pod is to ship their first feature.
-
-You've become a **Platform Engineer** without really noticing it happen — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts. On their first day, that new engineer clones a repo, runs one command, and gets straight to work. The exact same thing that happened to you, on your first day, with someone else's `docker-compose.yml` — except this time, you're the one who built the command.
-
-```mermaid
-flowchart TD
-    A[Cloud Native] --> B[Container]
-    B --> C[Docker]
-    C --> D[Kubernetes]
-    D --> E[Platform Engineering]
-```
-
-Every layer in that chain exists because the layer below it ran out of answers to a real question. That's exactly how you just arrived at Kubernetes yourself, by reading one `docker-compose.yml` file.
-
-But that's years away. Right now you're still on day one, three containers deep, with a product that's about to get its first real traffic. Chapter 2 goes back to this same `docker-compose.yml` file for a closer look, making sure "image," "container," and "volume" mean exactly what they need to for the rest of this book. Chapter 3 is the traffic spike, in full — every problem on your list, worked through one at a time, until you finally have a name for the thing that solves them.
+Chapter 2 goes back to this same `docker-compose.yml` file for a closer look, making sure "image," "container," and "volume" mean exactly what they need to for the rest of this book, before Chapter 3 picks this exact moment back up.
