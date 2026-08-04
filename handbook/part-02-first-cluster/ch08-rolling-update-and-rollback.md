@@ -1,7 +1,9 @@
 # Chapter 8 — Rolling Update & Rollback
 
 **Part II — First Cluster**
+
 **Tier:** Tier 2 — Standard
+
 **Touches `project/` code:** Yes — tag `ch08`.
 
 ---

@@ -1,7 +1,9 @@
 # Chapter 9 — Service & DNS
 
 **Part II — First Cluster**
+
 **Tier:** Tier 1 — Core
+
 **Touches `project/` code:** Yes — tag `ch09`.
 
 ---

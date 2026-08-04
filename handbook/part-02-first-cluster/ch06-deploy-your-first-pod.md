@@ -1,7 +1,9 @@
 # Chapter 6 — Deploy Your First Pod
 
 **Part II — First Cluster**
+
 **Tier:** Tier 1 — Core
+
 **Touches `project/` code:** Yes — first tag: `ch06`.
 
 ---

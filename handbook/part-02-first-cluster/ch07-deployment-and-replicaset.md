@@ -1,7 +1,9 @@
 # Chapter 7 — Deployment & ReplicaSet
 
 **Part II — First Cluster**
+
 **Tier:** Tier 1 — Core
+
 **Touches `project/` code:** Yes — tag `ch07`.
 
 ---

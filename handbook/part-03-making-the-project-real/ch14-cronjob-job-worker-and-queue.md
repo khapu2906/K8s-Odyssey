@@ -1,7 +1,9 @@
 # Chapter 14 — CronJob, Job, Worker & Queue
 
 **Part III — Making the Project Real**
+
 **Tier:** Tier 2 — Standard
+
 **Touches `project/` code:** Yes — tag `ch14`.
 
 ---

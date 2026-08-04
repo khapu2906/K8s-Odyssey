@@ -1,7 +1,9 @@
 # Chapter 16 — StatefulSet
 
 **Part III — Making the Project Real**
+
 **Tier:** Tier 1 — Core
+
 **Touches `project/` code:** Yes — tag `ch16`.
 
 ---

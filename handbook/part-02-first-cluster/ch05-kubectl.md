@@ -1,7 +1,9 @@
 # Chapter 5 — kubectl
 
 **Part II — First Cluster**
+
 **Tier:** Tier 2 — Standard
+
 **Touches `project/` code:** No — still cluster tooling, no AI Workspace manifests yet.
 
 ---
