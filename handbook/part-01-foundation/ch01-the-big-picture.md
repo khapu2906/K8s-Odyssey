@@ -105,7 +105,7 @@ You don't have a name for whatever solves all of this. Nobody on this two-person
 
 Jump ahead a few years. AI Workspace is a real product now, running across dozens of services on Kubernetes, with a real platform team — and you're on it. One day, a new engineer joins. Onboarding used to be a page of setup instructions; now you hand them one URL. They click a button. A few minutes later, their own environment — namespace, database, ingress, monitoring, all of it — is simply there, ready. They never had to learn what a Pod is to ship their first feature.
 
-You've become a **Platform Engineer** without really noticing it happen — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts, the same way `docker compose up` once let you start on day one without needing to relearn Docker from scratch. This book ends there, in Part IX. Remember this paragraph when you arrive: the story closes exactly where it opened, just from the other side of the command.
+You've become a **Platform Engineer** without really noticing it happen — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts. On their first day, that new engineer clones a repo, runs one command, and gets straight to work. The exact same thing that happened to you, on your first day, with someone else's `docker-compose.yml` — except this time, you're the one who built the command.
 
 ```mermaid
 flowchart TD
