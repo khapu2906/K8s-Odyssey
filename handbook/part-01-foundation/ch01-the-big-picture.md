@@ -51,9 +51,9 @@ You read through it block by block. `frontend` and `chat-api` both have a `build
 
 None of this is new to you. You already know what these words mean. An **image** is a snapshot of an app and everything it needs, ready to run. A **container** is that image, actually running. **Docker** is the tool that builds and runs both. **Compose** is the file format that describes several containers as one system, and starts them together.
 
-**Kubernetes** is different. You've heard the name — in interviews, in conference talks — but you've never actually used it. Nothing in this file explains why you'd need to. Three containers, one laptop, one command, and it's enough for what this team needs right now.
+Right now, that's all this product needs. Three containers, one laptop, one command. Nothing in this file hints that it won't stay that way.
 
-That's about to change. You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
+It won't. You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
 
 ```mermaid
 flowchart TD
@@ -96,12 +96,10 @@ flowchart TD
     C --> D[Need rollout]
     D --> E[Need service discovery]
     E --> F[Need scheduling]
-    F --> G[Kubernetes]
+    F --> G["?"]
 ```
 
-Chapter 3 lives inside this exact moment and works through each one of these problems in full. For now, just notice the shape: every item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet of them.
-
-This is where Kubernetes stops being just a word from job postings. **Kubernetes** is software whose entire job is running many containers across many machines. It constantly checks that what's actually running matches what's supposed to be running, and fixes the difference — without a human watching. It's not a bigger, fancier version of Compose. It exists because every problem on that list is real, and something has to handle all of them, permanently.
+You don't have a name for whatever solves all of this. Nobody on this two-person team has ever needed one before today. Chapter 3 lives inside this exact moment and works through each of these problems in full, one at a time, until a name shows up on its own. For now, just notice the shape: every item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet of them.
 
 ### Years later
 
