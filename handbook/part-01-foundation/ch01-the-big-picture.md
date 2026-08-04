@@ -12,11 +12,11 @@
 
 ### Day one
 
-You just joined a small startup as an engineer. The product is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:
+You just joined a small startup as an engineer. You've shipped Docker containers before — this isn't your first `docker-compose.yml`. The product here is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:
 
 > Clone the repo, run `docker compose up`, you're good to go.
 
-You do. Three containers start: `frontend`, `chat-api`, `postgres`. You open the browser, type a message, get an answer back. It works. Before writing any code yourself, you open `docker-compose.yml` to see what you're actually looking at.
+You do. Three containers start: `frontend`, `chat-api`, `postgres`. You open the browser, type a message, get an answer back. It works. Nothing about *how* surprises you — you open `docker-compose.yml` mostly to learn this specific codebase, not to relearn Docker.
 
 ```yaml
 services:
@@ -30,13 +30,7 @@ services:
     image: postgres:16
 ```
 
-Three blocks, three running things. `frontend` and `chat-api` get *built* from a folder in the repo; `postgres` just gets pulled — `image: postgres:16` — from somewhere else entirely, no build step at all. That difference is your first real question: what is an "image," and why does the team's own code need "building" into one, while Postgres apparently already comes as one, ready-made?
-
-Pulling on that thread leads to the answer this whole book is going to keep circling back to: a **container** packages an application together with everything it needs to run — its dependencies, its runtime, its configuration — into one portable unit, so it behaves identically whether it's running on your laptop, a teammate's laptop, or a server neither of you has touched. `docker compose up` didn't install Node.js or Postgres on your machine at all; it downloaded or built self-contained images and ran each one in isolation. That's the entire reason the onboarding doc could be one line — nobody had to tell you which Postgres version to install, or resolve a dependency conflict with something else already on your laptop. The image already decided all of that, once, for everyone.
-
-**Docker** is the tool that made this practical. The underlying idea — isolated processes, namespaced from the rest of the machine — existed in Linux before Docker did, but it was genuinely hard to use directly. Docker turned it into `docker build`, `docker run`, and a file called `docker-compose.yml` describing several containers as one system. That's why "Docker" and "container" get used almost interchangeably today, even though Docker is one implementation of the idea, not the idea itself.
-
-And that's the moment it clicks: **Docker isn't your application. Docker is just a better way to package it.** `chat-api` is still your code, your bug, your bill to pay when it breaks — Docker just made sure it runs the same way everywhere. Chapter 2 goes hands-on with exactly this.
+Exactly what you expected: two services built from source, one pulled as-is. `chat-api` is the one you'll actually be shipping code to — a thin API in front of Postgres, storing every conversation a user has with the AI. Ten minutes of reading and you know what this product does and how it's currently run. That part was never going to be the hard part.
 
 You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
 
@@ -86,13 +80,13 @@ flowchart TD
 
 Chapter 3 lives inside this exact moment and works through each one in full. For now, just notice the shape: every single item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet.
 
-**Kubernetes** is the answer to the whole list at once — software whose entire job is running many containers, across many machines, continuously checking that what's actually running matches what's supposed to be running, and fixing the difference without a human watching. It isn't a bigger, fancier Docker Compose. It exists because the list above is real, and somebody has to run it, permanently, for you.
+You already know the answer to "what is Docker, really" — a way to package an application so it runs the same way anywhere, nothing more. **Kubernetes turns out to be built on that same instinct, one level up.** It isn't a bigger, fancier Docker Compose, and it isn't your application either: it's software whose entire job is running many containers, across many machines, continuously checking that what's actually running matches what's supposed to be running, and fixing the difference without a human watching. It exists because the list above is real, and somebody has to run it, permanently, for you.
 
 ### Years later
 
 Skip ahead. AI Workspace is a real product now, running across dozens of services, on Kubernetes, with a real platform team — and you're on it. One day, a new engineer joins. Onboarding used to be a page of setup instructions; now you hand them one URL. They click a button. A few minutes later, their own environment — namespace, database, ingress, monitoring, all of it — is simply *there*, ready. They never had to learn what a Pod is to ship their first feature.
 
-At that point, without necessarily noticing it happen, you've become a **Platform Engineer** — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts, the same way `docker compose up` once let *you* start on day one without knowing what was underneath it. This book ends there, in Part IX, and it's worth remembering this paragraph when you arrive: the story closes exactly where it opened, just from the other side of the command.
+At that point, without necessarily noticing it happen, you've become a **Platform Engineer** — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts, the same way `docker compose up` once let *you* start on day one without needing to relearn Docker from scratch. This book ends there, in Part IX, and it's worth remembering this paragraph when you arrive: the story closes exactly where it opened, just from the other side of the command.
 
 ```mermaid
 flowchart TD
@@ -122,4 +116,4 @@ Every one of these gets its own real chapter, with AI Workspace as the example, 
 
 ### What's next
 
-Chapter 2 goes back to that `docker-compose.yml` file and actually works with it — a fast, practical Docker refresher assuming you can already run `docker compose up`, just making sure "image," "container," and "volume" mean the same thing to you that they're about to mean to the rest of this book. Chapter 3 is the traffic spike, in full — every item on the "Need..." list above, worked through one at a time, until Kubernetes stops being an abstract next step.
+Chapter 2 is a fast pass over the same `docker-compose.yml` file, this time making sure "image," "container," and "volume" carry exactly the meaning the rest of this book needs from them — a calibration, not a first introduction. Chapter 3 is the traffic spike, in full — every item on the "Need..." list above, worked through one at a time, until Kubernetes stops being an abstract next step.
