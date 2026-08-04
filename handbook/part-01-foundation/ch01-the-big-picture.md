@@ -53,7 +53,7 @@ None of this is new to you. You already know what these words mean. An **image**
 
 Right now, that's all this product needs. Three containers, one laptop, one command. Nothing in this file hints that it won't stay that way.
 
-It won't. You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
+It won't. Not today — but everything that happens from here starts with this exact file no longer being enough:
 
 ```mermaid
 flowchart TD
@@ -67,7 +67,7 @@ flowchart TD
     H --> I[Need multi-cluster]
 ```
 
-This whole book is that chain, one link — one Part — at a time.
+The first link shows up sooner than you'd think.
 
 ### Three weeks later
 
@@ -99,6 +99,6 @@ flowchart TD
     F --> G["?"]
 ```
 
-You don't have a name for whatever solves all of this. Nobody on this two-person team has ever needed one before today. Chapter 3 lives inside this exact moment and works through each of these problems in full, one at a time, until a name shows up on its own. For now, just notice the shape: every item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet of them.
+You don't have a name for whatever solves all of this. Nobody on this two-person team has ever needed one before today. Every item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet of them.
 
-Chapter 2 goes back to this same `docker-compose.yml` file for a closer look, making sure "image," "container," and "volume" mean exactly what they need to for the rest of this book, before Chapter 3 picks this exact moment back up.
+For now, you close the laptop, still without an answer. Whatever it's called, you're going to need it soon.
