@@ -1,7 +1,9 @@
 # Chapter 22 — Gateway API
 
 **Part IV — Networking**
+
 **Tier:** Tier 2 — Standard
+
 **Touches `project/` code:** Yes — tag `ch22`.
 
 ---

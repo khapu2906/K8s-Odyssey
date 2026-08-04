@@ -64,20 +64,12 @@ Full guide: [`labs/ch09/`](../../labs/ch09/). Code: `git checkout ch09` in [`pro
 
 ## 🔬 Under the Hood
 
-```
-Frontend
-   │  DNS lookup: "chat-api"
-   ▼
-CoreDNS
-   │  resolves to the Service's ClusterIP
-   ▼
-Service (chat-api)
-   │  picks a healthy backing Pod
-   ▼
-EndpointSlice
-   │  the live, up-to-date list of matching Pod IPs
-   ▼
-Pod
+```mermaid
+flowchart TD
+    A[Frontend] -->|DNS lookup: chat-api| B[CoreDNS]
+    B -->|resolves to the Service's ClusterIP| C[Service: chat-api]
+    C -->|picks a healthy backing Pod| D[EndpointSlice]
+    D -->|live, up-to-date list of matching Pod IPs| E[Pod]
 ```
 
 A Service never stores Pod IPs itself — an **EndpointSlice** does, and it's kept in sync automatically every time a Pod matching the selector appears or disappears (which is exactly what happened three times during Chapter 8's rollout). `kubectl get endpointslices -n ai-workspace` shows this list directly. The full routing mechanism — how traffic to the ClusterIP actually reaches a real Pod on a real Node — is `kube-proxy`'s job, covered in depth in Chapter 20 and Chapter 58.

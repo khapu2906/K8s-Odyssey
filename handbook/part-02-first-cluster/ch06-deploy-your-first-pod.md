@@ -56,14 +56,22 @@ Full step-by-step guide: [`labs/ch06/`](../../labs/ch06/). Runnable code: `git c
 
 `kubectl apply` sent your YAML to the API Server, which wrote it into etcd as the *desired* state. From there:
 
-```
-You → API Server → etcd (desired: chat-api Pod exists)
-                       │
-                  Scheduler (picks a Node)
-                       │
-                  kubelet on that Node (pulls image, starts container)
-                       │
-                  kubelet reports status back → API Server → etcd (actual state)
+```mermaid
+sequenceDiagram
+    participant You
+    participant API as API Server
+    participant etcd
+    participant Scheduler
+    participant Kubelet
+
+    You->>API: kubectl apply (chat-api Pod)
+    API->>etcd: write desired state
+    Scheduler->>API: watch for unscheduled Pods
+    Scheduler->>API: assign Node
+    Kubelet->>API: watch for Pods on its Node
+    Kubelet->>Kubelet: pull image, start container
+    Kubelet->>API: report status
+    API->>etcd: write actual state
 ```
 
 `kubectl get pods` is just you asking the API Server "what does etcd currently say?" Chapters 54 and 56 go deep on the Scheduler and kubelet specifically; for now, notice that nothing here required Docker Compose's networking or `depends_on` — that concept doesn't exist yet at the Pod level, which is exactly why `chat-api` alone, without Postgres, is about to fail.

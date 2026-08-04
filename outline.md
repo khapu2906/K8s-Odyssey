@@ -30,38 +30,45 @@ AI Workspace was chosen (fits the "Odyssey" brand, big enough to cover all 10 Pa
 
 ### Stage 1 — Monolith (Chapters 4–9, Part I–II)
 
-```
-Frontend → Chat API → PostgreSQL
+```mermaid
+flowchart LR
+    Frontend --> ChatAPI[Chat API]
+    ChatAPI --> Postgres[(PostgreSQL)]
 ```
 
 Product: "ask the AI, save the conversation history." No Auth, no Billing. Understandable in 5 minutes.
 
 ### Stage 2 — Modular monolith (Chapters 10–18, Part III)
 
-```
-Frontend
-   │
-Chat API
- ├── Auth (module)
- ├── Conversation (module)
- └── Document (module)
-
-PostgreSQL     Redis
+```mermaid
+flowchart TD
+    Frontend --> ChatAPI[Chat API]
+    ChatAPI --> Auth[Auth module]
+    ChatAPI --> Conversation[Conversation module]
+    ChatAPI --> Document[Document module]
+    ChatAPI --> Postgres[(PostgreSQL)]
+    ChatAPI --> Redis[(Redis)]
 ```
 
 Why it appears: need login (Auth), need session cache/rate-limiting (Redis), need to upload documents to ask the AI about (Document). Still one service, one deployable.
 
 ### Stage 3 — Microservices (Chapters 19–34, Part IV–VI)
 
-```
-Ingress / Gateway API
-        │
-   API Gateway
- ┌──────┼───────────┬──────────────┐
-Auth   Workspace   AI Service   Document Service
-Svc     Svc                          │
- │       │                      Embedding Worker
-PostgreSQL   Redis   RabbitMQ   Vector DB   Object Storage
+```mermaid
+flowchart TD
+    Ingress[Ingress / Gateway API] --> Gateway[API Gateway]
+    Gateway --> AuthSvc[Auth Service]
+    Gateway --> WorkspaceSvc[Workspace Service]
+    Gateway --> AISvc[AI Service]
+    Gateway --> DocumentSvc[Document Service]
+
+    AuthSvc --> Postgres[(PostgreSQL)]
+    WorkspaceSvc --> Redis[(Redis)]
+    AISvc --> Queue[(RabbitMQ)]
+    AISvc --> VectorDB[(Vector DB)]
+    DocumentSvc --> ObjectStorage[(Object Storage)]
+    DocumentSvc --> Embedding[Embedding Worker]
+    Queue --> Embedding
 ```
 
 Why it splits: AI Service needs to scale independently (GPU-bound, high latency), Embedding must run in the background via a queue, Document needs to store large files (Object Storage) and support semantic search (Vector DB). Notification, Billing, and Admin only appear in Part V–VI when a specific situation calls for them (notifications, plan billing).

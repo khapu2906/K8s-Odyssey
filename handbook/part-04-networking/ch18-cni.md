@@ -35,18 +35,17 @@ The IP the new Pod ends up with, and the veth interface that appears on the Node
 
 ## 🔬 Under the Hood
 
-```
-kubelet
-   │  "a Pod needs networking"
-   ▼
-container runtime (containerd)
-   │  invokes the CNI plugin binary with ADD + config JSON
-   ▼
-CNI plugin
-   │  creates netns, veth pair, bridge attachment, assigns IP
-   │  (exactly Chapter 17's manual steps)
-   ▼
-returns IP + interface info → kubelet records Pod IP
+```mermaid
+sequenceDiagram
+    participant Kubelet
+    participant Runtime as Container Runtime (containerd)
+    participant CNI as CNI Plugin
+
+    Kubelet->>Runtime: a Pod needs networking
+    Runtime->>CNI: ADD + config JSON
+    CNI->>CNI: create netns, veth pair, bridge attachment, assign IP (Chapter 17's manual steps)
+    CNI->>Runtime: return IP + interface info
+    Runtime->>Kubelet: report Pod IP
 ```
 
 Every Pod IP you've seen in every `kubectl get pods -o wide` since Chapter 6 came from this exact flow. The CNI plugin is also who decides *how* Pods on different Nodes reach each other — via an overlay network, direct routing, or something else entirely — which is the whole subject of Chapter 19.
