@@ -117,22 +117,4 @@ flowchart TD
 
 Every layer in that chain exists because the layer below it ran out of answers to a real question. That's exactly how you just arrived at Kubernetes yourself, by reading one `docker-compose.yml` file.
 
-### Notes from the investigation
-
-A few words you'll see constantly starting in Part II, once AI Workspace moves onto a real cluster. You don't need to understand them yet — just recognize them by name, the way you'd recognize a new coworker's face before knowing their job title:
-
-| Term | One-line meaning |
-|---|---|
-| **Node** | A machine (physical or virtual) that's part of the cluster and actually runs your containers. |
-| **Pod** | The smallest deployable unit in Kubernetes — one or more containers that always run together on the same Node. |
-| **Deployment** | A description of how many copies of a Pod should be running, and how to update them safely. |
-| **Service** | A stable network address that lets other things find your Pods, even as individual Pods come and go. |
-| **Ingress** | The entry point that routes outside traffic (like a browser request) into the right Service inside the cluster. |
-| **Volume** | A way to give a container storage that survives even if the container restarts. |
-| **Namespace** | A way to divide one cluster into separate, named areas — so different teams or environments don't collide. |
-
-Every one of these gets its own real chapter, with AI Workspace as the example, starting in Part II.
-
-### What's next
-
-Chapter 2 is a fast pass over the same `docker-compose.yml` file, making sure "image," "container," and "volume" carry exactly the meaning the rest of this book needs from them — a calibration, not a first introduction. Chapter 3 is the traffic spike, in full: every item on the "Need..." list above, worked through one at a time, until Kubernetes stops being an abstract next step.
+But that's years away. Right now you're still on day one, three containers deep, with a product that's about to get its first real traffic. Chapter 2 goes back to this same `docker-compose.yml` file for a closer look, making sure "image," "container," and "volume" mean exactly what they need to for the rest of this book. Chapter 3 is the traffic spike, in full — every problem on your list, worked through one at a time, until you finally have a name for the thing that solves them.
