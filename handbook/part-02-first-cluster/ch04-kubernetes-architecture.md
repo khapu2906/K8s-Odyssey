@@ -1,7 +1,9 @@
 # Chapter 4 — Kubernetes Architecture
 
 **Part II — First Cluster**
+
 **Tier:** Tier 2 — Standard
+
 **Touches `project/` code:** No — this chapter only creates a local cluster; the first `project/` tag appears in Chapter 6.
 
 ---
