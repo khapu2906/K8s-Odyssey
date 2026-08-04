@@ -12,7 +12,9 @@
 
 ### Day one
 
-You just joined a small startup as an engineer. You've shipped Docker containers before — this isn't your first `docker-compose.yml`. The product here is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:
+You just joined a small startup as an engineer. Lucky for you — you've worked with Docker and Compose plenty before this job, so none of what's coming is unfamiliar territory. Quick refresher anyway, so the same words mean the same thing for the rest of this book: **Docker** is the tool; an **image** is a frozen, ready-to-run snapshot of an app and everything it needs; a **container** is what you get when that image actually runs; and **Docker Compose** is the file that describes several containers as one system, wired together. Nothing new there — just worth having in one place before some of these words start meaning something slightly different in Kubernetes.
+
+The product here is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:
 
 > Clone the repo, run `docker compose up`, you're good to go.
 
