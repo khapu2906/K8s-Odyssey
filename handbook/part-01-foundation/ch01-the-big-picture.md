@@ -16,7 +16,7 @@ You just joined a small startup as an engineer. The product is **AI Workspace** 
 
 > Clone the repo, run `docker compose up`, you're good to go.
 
-You do. Three containers start. You open the browser, type a message, get an answer back. It works. Before writing a line of code, you open `docker-compose.yml` anyway — not because the onboarding doc left you confused, but because you'd rather see what's actually running than take a one-liner's word for it.
+You do it. Three containers start. You open the browser, type a message, and get an answer back. It works. Before writing any code, you open `docker-compose.yml` to see what's actually running.
 
 ```yaml
 services:
@@ -47,13 +47,13 @@ volumes:
   pgdata:
 ```
 
-You read it the way you'd read anyone's compose file — top to bottom, matching each block against things you already know. `frontend` and `chat-api` both have a `build:` line, so Docker's turning source code in those folders into an image before running it. `postgres` skips that entirely — `image: postgres:16`, pulled ready-made, no Dockerfile of your team's involved. `chat-api` has an `environment:` block pointing a `DATABASE_URL` at `postgres` by name, which is how it finds the database without either container knowing an IP address. And `postgres` has a named `volumes:` mount, so whatever gets written to the database survives a restart instead of vanishing with the container.
+You read through it block by block. `frontend` and `chat-api` both have a `build:` line — Docker builds an image from the source code in that folder, then runs it. `postgres` skips that step: it just uses `image: postgres:16`, a ready-made image nobody on your team built. `chat-api` has an environment variable, `DATABASE_URL`, pointing at `postgres` by name — that's how it finds the database without needing to know its IP address. And `postgres` writes its data to a named volume, so a restart doesn't wipe the database.
 
-None of that took real effort to work out — you've read files shaped like this one plenty of times before this job. An **image** is a frozen, ready-to-run snapshot of an app and everything it needs; a **container** is what you get when that image is actually running; **Docker** is the tool that builds and runs both; **Compose** is what lets several containers be described, and started together, as one file. That part of the job, you already know cold.
+None of this is new to you. You already know what these words mean. An **image** is a snapshot of an app and everything it needs, ready to run. A **container** is that image, actually running. **Docker** is the tool that builds and runs both. **Compose** is the file format that describes several containers as one system, and starts them together.
 
-**Kubernetes**, on the other hand, you don't. You've heard the word — in interviews, in conference talk titles, in job postings for companies bigger than this one. You've never had a reason to open a cluster, and nothing in this `docker-compose.yml` even hints at why you'd need to. Three containers, one laptop, one command. It's enough, right now, for what this team needs. That sentence is doing more work than it looks like — the whole book is what happens after it stops being true.
+**Kubernetes** is different. You've heard the name — in interviews, in conference talks — but you've never actually used it. Nothing in this file explains why you'd need to. Three containers, one laptop, one command, and it's enough for what this team needs right now.
 
-You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
+That's about to change. You don't know it yet, but every chapter in this book starts because something in this one file eventually stops being enough:
 
 ```mermaid
 flowchart TD
@@ -77,15 +77,15 @@ The product gets traction. Traffic goes up. In standup, you make the obvious sug
 docker compose up --scale chat-api=3
 ```
 
-Three `chat-api` containers, running. You did it. Except — which one actually answers the next request that hits port `8080`? Compose can't publish the same host port from three containers at once, so this doesn't even start cleanly, and even patched around, a deeper question is sitting right underneath it, one `--scale` never answers:
+Three `chat-api` containers, running. You did it. But which one actually answers the next request that hits port `8080`? Compose can't even publish the same host port from three containers at once, so this doesn't start cleanly. And underneath that error is a bigger question `--scale` never answers:
 
 **Who sends traffic to these three containers?**
 
-Nobody. There's no piece of software watching all three, deciding which one is free, routing a request to it. You'd have to build that yourself. And once you start pulling on *that* thread, more of the same shape show up, one after another:
+Nobody. No piece of software is watching all three, deciding which one is free, and routing a request to it. You'd have to build that yourself. Once you start pulling on that thread, more problems show up, one after another, all the same shape:
 
 - You need **another machine**, because three containers plus everything else won't fit on one forever.
 - You need something to **restart** a container that dies silently at 3am, because right now, nothing does.
-- You need a way to **roll out a new version** without stopping all three at once.
+- You need a way to **roll out a new version** without stopping all three containers at once.
 - You need **service discovery** — some way for `frontend` to find "a healthy `chat-api`" without hardcoding which of the three.
 - You need something to decide **which machine** a new container should even run on, as the fleet grows.
 
@@ -99,15 +99,15 @@ flowchart TD
     F --> G[Kubernetes]
 ```
 
-Chapter 3 lives inside this exact moment and works through each one in full. For now, just notice the shape: every single item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet.
+Chapter 3 lives inside this exact moment and works through each one of these problems in full. For now, just notice the shape: every item on that list is Docker Compose being asked a question it was never designed to answer, because it was built for one machine, not a fleet of them.
 
-This is where that word from your onboarding week — the one you'd only ever seen in job postings — stops being abstract: **Kubernetes** is software whose entire job is running many containers, across many machines, continuously checking that what's actually running matches what's supposed to be running, and fixing the difference without a human watching. Not a bigger, fancier Compose. It exists because the list above is real, and somebody has to run it, permanently, for you.
+This is where Kubernetes stops being just a word from job postings. **Kubernetes** is software whose entire job is running many containers across many machines. It constantly checks that what's actually running matches what's supposed to be running, and fixes the difference — without a human watching. It's not a bigger, fancier version of Compose. It exists because every problem on that list is real, and something has to handle all of them, permanently.
 
 ### Years later
 
-Skip ahead. AI Workspace is a real product now, running across dozens of services, on Kubernetes, with a real platform team — and you're on it. One day, a new engineer joins. Onboarding used to be a page of setup instructions; now you hand them one URL. They click a button. A few minutes later, their own environment — namespace, database, ingress, monitoring, all of it — is simply *there*, ready. They never had to learn what a Pod is to ship their first feature.
+Jump ahead a few years. AI Workspace is a real product now, running across dozens of services on Kubernetes, with a real platform team — and you're on it. One day, a new engineer joins. Onboarding used to be a page of setup instructions; now you hand them one URL. They click a button. A few minutes later, their own environment — namespace, database, ingress, monitoring, all of it — is simply there, ready. They never had to learn what a Pod is to ship their first feature.
 
-At that point, without necessarily noticing it happen, you've become a **Platform Engineer** — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts, the same way `docker compose up` once let *you* start on day one without needing to relearn Docker from scratch. This book ends there, in Part IX, and it's worth remembering this paragraph when you arrive: the story closes exactly where it opened, just from the other side of the command.
+You've become a **Platform Engineer** without really noticing it happen — building internal tools on top of Kubernetes so the rest of the company doesn't have to become Kubernetes experts, the same way `docker compose up` once let you start on day one without needing to relearn Docker from scratch. This book ends there, in Part IX. Remember this paragraph when you arrive: the story closes exactly where it opened, just from the other side of the command.
 
 ```mermaid
 flowchart TD
@@ -117,7 +117,7 @@ flowchart TD
     D --> E[Platform Engineering]
 ```
 
-Every layer in that chain exists because the one below it ran out of answers to a question the team actually had — which is exactly how you just arrived at it yourself, by reading one `docker-compose.yml` file.
+Every layer in that chain exists because the layer below it ran out of answers to a real question. That's exactly how you just arrived at Kubernetes yourself, by reading one `docker-compose.yml` file.
 
 ### Notes from the investigation
 
@@ -137,4 +137,4 @@ Every one of these gets its own real chapter, with AI Workspace as the example, 
 
 ### What's next
 
-Chapter 2 is a fast pass over the same `docker-compose.yml` file, this time making sure "image," "container," and "volume" carry exactly the meaning the rest of this book needs from them — a calibration, not a first introduction. Chapter 3 is the traffic spike, in full — every item on the "Need..." list above, worked through one at a time, until Kubernetes stops being an abstract next step.
+Chapter 2 is a fast pass over the same `docker-compose.yml` file, making sure "image," "container," and "volume" carry exactly the meaning the rest of this book needs from them — a calibration, not a first introduction. Chapter 3 is the traffic spike, in full: every item on the "Need..." list above, worked through one at a time, until Kubernetes stops being an abstract next step.
