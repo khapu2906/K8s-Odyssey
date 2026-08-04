@@ -9,12 +9,15 @@ This is not a reference handbook. It's the story of a startup, where Kubernetes 
 
 > **Non-negotiable rule:** at any point in the book, the reader must be able to understand "what the project does" in 5 minutes. If a new business concept shows up, it must come with a clear technical reason immediately — never introduced early "just in case it's needed later."
 
-Four pillars keep the book consistent:
+Five pillars keep the book consistent:
 
 1. **Evolve, don't jump ahead** — the project's architecture moves from monolith → modular monolith → microservices, splitting only when there's a real reason (independent scaling, independent deployment, need for a queue...). No 10 services from day one.
 2. **Repetition builds memory** — every new chapter doesn't just teach something new; it makes the reader **redeploy everything learned so far** before adding one more layer. For example, the Service chapter doesn't just teach Service — the reader re-types `kubectl apply` for the Deployment and ConfigMap already covered, then adds Service on top. Typing old commands again across several consecutive chapters is what builds muscle memory, not re-reading theory once.
 3. **Learn through incidents, not just instructions** — every major stage includes at least one moment where the system *gets broken* (a Pod deleted by hand, OOMKilled, Ingress Controller removed, a Node going NotReady, losing the cluster...) and the reader has to investigate on their own, with no answer handed to them.
 4. **One single source of truth for code** — see section 7. There is never a second place holding the same piece of code that could drift out of sync.
+5. **The reader is the protagonist, always** — never "someone on the team," always "you." Every Mission is something *you* discover, decide, or break, in first-person present stakes, not a ticket description handed to a bystander. The chapter flow itself should read as one continuous scene: the story continues → a problem surfaces inside it → you investigate → you discover a concept → theory explains it (with real trade-offs, not just a definition) → you decide → you implement. Never open with a dry problem statement before the reader has a reason to care, and never explain a concept before the story has made the reader want to know it.
+
+**Narrative symmetry, locked in:** the book opens with *"Clone the repo, run `docker compose up`, you're good to go"* (Chapter 1) and must close — at the end of Part IX, Platform Engineering — with the mirror image: a new engineer joins the now-grown company, and *you* are the one who hands them a single command or URL that makes everything just work, without them ever needing to know what a Pod is. That's the payoff of pillar 5: the reader who started as the person running someone else's one-line onboarding doc ends the book as the person who wrote one. Don't let Part IX end on a checklist of platform-engineering topics — end it on this scene.
 
 ---
 
