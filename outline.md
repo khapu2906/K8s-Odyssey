@@ -9,25 +9,32 @@ This is not a reference handbook. It's the story of a startup, where Kubernetes 
 
 > **Non-negotiable rule:** at any point in the book, the reader must be able to understand "what the project does" in 5 minutes. If a new business concept shows up, it must come with a clear technical reason immediately — never introduced early "just in case it's needed later."
 
-Five pillars keep the book consistent:
+Pillars that keep the book consistent:
 
 1. **Evolve, don't jump ahead** — the project's architecture moves from monolith → modular monolith → microservices, splitting only when there's a real reason (independent scaling, independent deployment, need for a queue...). No 10 services from day one.
-2. **Repetition builds memory** — every new chapter doesn't just teach something new; it makes the reader **redeploy everything learned so far** before adding one more layer. For example, the Service chapter doesn't just teach Service — the reader re-types `kubectl apply` for the Deployment and ConfigMap already covered, then adds Service on top. Typing old commands again across several consecutive chapters is what builds muscle memory, not re-reading theory once.
-3. **Learn through incidents, not just instructions** — every major stage includes at least one moment where the system *gets broken* (a Pod deleted by hand, OOMKilled, Ingress Controller removed, a Node going NotReady, losing the cluster...) and the reader has to investigate on their own, with no answer handed to them.
-4. **One single source of truth for code** — see section 7. There is never a second place holding the same piece of code that could drift out of sync.
-5. **The reader is the protagonist, always** — never "someone on the team," always "you." Every Mission is something *you* discover, decide, or break, in first-person present stakes, not a ticket description handed to a bystander. The chapter flow itself should read as one continuous scene: the story continues → a problem surfaces inside it → you investigate → you discover a concept → theory explains it (with real trade-offs, not just a definition) → you decide → you implement. Never open with a dry problem statement before the reader has a reason to care, and never explain a concept before the story has made the reader want to know it.
+2. **Repetition builds memory** — every new chapter doesn't just teach something new; the reader **redeploys everything learned so far** before adding one more layer, inside the story itself (typing the same `kubectl apply` commands again as the scene continues, not as a checklist). Typing old commands again across several consecutive chapters is what builds muscle memory, not re-reading theory once.
+3. **Learn through incidents, not just instructions** — every major stage includes at least one moment where the system *gets broken* (a Pod deleted by hand, OOMKilled, Ingress Controller removed, a Node going NotReady, losing the cluster...). This happens as a scene in the story — the reader hits the break, investigates, and figures it out — not as a separate labeled exercise.
+4. **One single source of truth for code** — see section 6. There is never a second place holding the same piece of code that could drift out of sync.
+5. **The reader is the protagonist, always** — never "someone on the team," always "you." Everything in a chapter is something *you* discover, decide, or break, in continuous present-tense stakes, not a ticket description handed to a bystander.
+6. **Pure narrative, no scaffolding** — every chapter, hands-on or not, is one continuous scene from first line to last. No section headers (no "Mission," "Theory," "Hands-on," "Debug Lab," "Interview Questions"), no metadata blocks, no tier labels. Code, YAML, and commands are quoted inline exactly where the character actually reads or types them — never pulled out into a separately labeled section.
+7. **Knowledge is earned, not front-loaded** — a name, tool, or concept only enters the story once the character has a real reason to go looking for it. If the reader doesn't know Kubernetes exists yet, the word "Kubernetes" does not appear yet either — not even in a diagram. Never define something before the story has made the reader want to know it.
+8. **Never break the fourth wall** — no "this book," no "Chapter 3 will...," no "Part IX," no addressing the reader about the book's own structure. If a chapter needs to end on a cliffhanger, end it *in-scene* (the character closes the laptop still without an answer), never with a preview of what's coming.
 
-**Narrative symmetry, locked in:** the book opens with *"Clone the repo, run `docker compose up`, you're good to go"* (Chapter 1) and must close — at the end of Part IX, Platform Engineering — with the mirror image: a new engineer joins the now-grown company, and *you* are the one who hands them a single command or URL that makes everything just work, without them ever needing to know what a Pod is. That's the payoff of pillar 5: the reader who started as the person running someone else's one-line onboarding doc ends the book as the person who wrote one. Don't let Part IX end on a checklist of platform-engineering topics — end it on this scene.
+**Writing craft, concretely:**
+
+- Full sentences. No fragments-for-drama, no elliptical inversions ("Kubernetes, on the other hand, you don't"). If it's hard to parse on first read, rewrite it plainly.
+- The character already knows the fundamentals a working engineer would know (Docker, containers, `docker-compose.yml`) before the book starts. Chapter 1 is about learning *this specific project*, not relearning Docker. Investigation is spent on what's genuinely new — first the project, then Kubernetes itself.
+- Diagrams are Mermaid, never ASCII box-drawing.
+- Code and config examples look real — full YAML with the fields a real file would have (`environment`, `depends_on`, `volumes`...), not a stripped three-line stub.
+- **Give the scene room to breathe.** A chapter isn't a technical walkthrough compressed to the minimum word count — it's closer to *The Phoenix Project* or *Designing Data-Intensive Applications*: a specific time and place (a Monday morning, a Friday at 6:43pm), the character's own reaction in the moment ("for a second it feels like a win... then reality catches up"), and a problem that's allowed to build slowly instead of being named immediately.
+- **The world has other people in it.** A founder, teammates, customers in a Slack channel — conflict and stakes show up through them (a standup meeting, a dashboard everyone's staring at, a complaint thread), not only through narration at the reader.
+- Target roughly 1500–2500 words for an opening-style chapter. Not a hard rule, but a 700-word chapter is a summary, not a scene.
+
+**Narrative symmetry, locked in:** the book opens with *"Clone the repo, run `docker compose up`, you're good to go"* (Chapter 1) and must close — at the end of Part IX, Platform Engineering — with the mirror image: a new engineer joins the now-grown company, and *you* are the one who hands them a single command or URL that makes everything just work, without them ever needing to know what a Pod is. Chapter 1 does not preview this payoff — it should land as a surprise when the reader actually gets there.
 
 ---
 
-## 2. Chapter structure: the first 2–3 chapters are pure theory, then project-heavy
-
-Part I (Chapters 1–3) is pure theoretical foundation — The Big Picture, Docker Review, Why Compose Isn't Enough — no hands-on, no code, just enough vocabulary before diving in. From Chapter 4 onward, every chapter revolves around the project: Mission opens with a real project problem, Theory is just enough to solve it, and Hands-on takes up most of the chapter.
-
----
-
-## 3. The throughline project: AI Workspace
+## 2. The throughline project: AI Workspace
 
 AI Workspace was chosen (fits the "Odyssey" brand, big enough to cover all 10 Parts) over TaskFlow/BookHub. To avoid breaking the "5-minute understanding" rule, **the domain must reveal itself gradually, matching the architecture's own evolution** — never exposing every component up front.
 
@@ -78,113 +85,81 @@ Why it splits: AI Service needs to scale independently (GPU-bound, high latency)
 
 ---
 
-## 4. Which chapters touch code, which don't
+## 3. How chapters get written
 
-Not every theory chapter needs to change the project's code.
+Chapters are written **one at a time, in order, when we get there** — not pre-scaffolded in bulk. A chapter file is just its title and the story:
 
-| Chapter type | Touches `project/` code? | Example |
+```markdown
+# Chapter N — Title
+
+[continuous narrative — no metadata block, no section headers]
+```
+
+Not every chapter changes `project/`'s code — Part I (Chapters 1–3) is pure story with no hands-on, and a few later chapters (Linux networking fundamentals, internals-heavy topics) are standalone investigation without touching AI Workspace directly. That's decided per chapter as it's written, not pre-labeled with a tier system.
+
+---
+
+## 4. Roadmap by Part
+
+| Part | Topic | Chapters |
 |---|---|---|
-| Applied directly to AI Workspace | ✅ | Deploy Pod, Service, ConfigMap, HPA, Ingress |
-| Foundational theory, standalone lab | ❌ | Linux Network Namespace, etcd/Raft, CNI internals |
-| Part X — Under the Hood | ❌ (has its own project: a mini-K8s written in Go) | API Server internals, Scheduler, Kubelet |
+| I | Foundation | 1–3 |
+| II | First Cluster | 4–9 |
+| III | Making the Project Real | 10–16 |
+| IV | Networking | 17–22 |
+| V | Production (Observability) | 23–28 |
+| VI | CI/CD | 29–34 |
+| VII | Security | 35–39 |
+| VIII | Multi-Cluster & Cloud | 40–46 |
+| IX | Platform Engineering | 47–50 |
+| X | Under the Hood | 51–63 |
+
+Part X (Under the Hood) will get its own separate mini-Kubernetes-in-Go project when we actually reach it — not scaffolded ahead of time.
 
 ---
 
-## 5. Chapter framework — 3 depth tiers
-
-The full 8-section format is only realistic for a small subset of chapters if this is written solo. Split into 3 tiers:
-
-| Section | Tier 1 — Core (~15–18 chapters) | Tier 2 — Standard (most of Part II–IX) | Tier 3 — Deep-read (Part X) |
-|---|---|---|---|
-| 🎯 Mission (a real project problem) | ✅ | ✅ | ✅ (a mini-K8s problem) |
-| 📖 Theory | ✅ | ✅ | ✅ |
-| 🛠 Hands-on on AI Workspace (redeploy old + add new, see section 1.2) | ✅ | ✅ | ❌ — hands-on on the separate Go project |
-| 🔬 Under the Hood | ✅ | ✅ | ✅ (this *is* the chapter's content) |
-| 🧰 Production Notes | ✅ | ⛔ depends on chapter | ⛔ |
-| 🐞 Debug Lab (real incident) | ✅ | ⛔ | ⛔ |
-| 💬 Interview Questions | ✅ | ⛔ | ⛔ |
-| 🚀 Challenge (easy→expert) | ✅ | ✅ (trimmed to 1–2 levels) | ⛔ |
-
-Suggested Tier 1 chapters (following AI Workspace's major milestones): Pod, Deployment, Service, ConfigMap/Secret, Probes, Resource Requests/Limits & OOMKilled, HPA, PVC/StatefulSet (Postgres), Ingress, Prometheus/Grafana, CI/CD pipeline, Helm, GitOps/ArgoCD, RBAC, Backup/Velero.
-
----
-
-## 6. Roadmap by Part
-
-| Part | Topic | Chapters | Primary tier |
-|---|---|---|---|
-| I | Foundation (pure theory, see section 2) | 1–3 | — |
-| II | First Cluster | 4–9 | Core/Standard |
-| III | Making the Project Real | 10–16 | Core/Standard |
-| IV | Networking | 17–22 | Standard (17–19 have no code) |
-| V | Production (Observability) | 23–28 | Core/Standard |
-| VI | CI/CD | 29–34 | Core/Standard |
-| VII | Security | 35–39 | Standard |
-| VIII | Multi-Cluster & Cloud | 40–46 | Standard (only 1 cloud written in full, the other 2 get a differences note) |
-| IX | Platform Engineering | 47–50 | Standard, extended — not mandatory |
-| X | Under the Hood | 51–63 | Deep-read — separate mini-K8s (Go) project, decoupled from `project/` |
-
----
-
-## 7. One source of truth for code
+## 5. One source of truth for code
 
 **There is exactly one place where code actually lives: `project/`** — a single AI Workspace repo, evolving commit by commit, with milestones marked by **git tags per chapter** (`ch04`, `ch09`, `ch19`...). To see the project exactly as it stood at a given chapter, just `git checkout ch09`.
 
-Code shown inside a chapter's text **is not a separate file** — it's a direct quote embedded in the prose (a fenced code block), copied verbatim from the corresponding file in `project/` at that chapter's tag, purely to illustrate while reading. Because it lives inside the text itself, there's no physical duplicate to keep in sync — no `handbook/chXX/code/` or any second code tree exists.
+Code shown inside a chapter's text **is not a separate file** — it's a direct quote embedded in the prose, copied verbatim from the corresponding file in `project/` at that chapter's tag, purely to illustrate while reading. Because it lives inside the text itself, there's no physical duplicate to keep in sync.
 
 ```
 kubernetes-odyssey/
 ├── README.md
-├── handbook/
+├── handbook/                # English edition
 │   ├── SUMMARY.md
 │   ├── 00-preface/
 │   ├── part-01-foundation/
-│   │   ├── ch01-big-picture.md
-│   │   ├── ch02-docker-review.md
-│   │   └── ch03-why-compose-not-enough.md
-│   ├── part-02-first-cluster/
-│   │   ├── ch04-cluster-architecture.md
-│   │   ├── ch06-first-pod.md        # illustrative code lives inside this .md file itself
+│   │   ├── ch01-the-big-picture.md
 │   │   └── ...
 │   └── part-10-under-the-hood/
 │
-├── project/                # THE SINGLE SOURCE OF CODE — one repo, tagged per chapter
+├── handbook-vi/             # Vietnamese edition — same structure, same chapters, its own SUMMARY.md
+│   ├── SUMMARY.md
+│   ├── 00-preface/
+│   └── part-01-foundation/
+│       └── ch01-the-big-picture.md
 │
-├── labs/chXX/               # step-by-step guides, Tier 1/2 chapters only
-├── incidents/chXX/          # only chapters with a Debug Lab (see section 8)
-├── challenges/chXX/{easy,medium,hard,expert}.md
-├── solutions/chXX/
-├── mini-kubernetes/          # separate Go project for Part X
-├── diagrams/
-├── cheatsheets/
-└── scripts/
+├── project/                # THE SINGLE SOURCE OF CODE — one repo, tagged per chapter
+├── challenges/              # optional exercises, added per chapter as it's written
+├── cheatsheets/             # quick-reference: kubectl commands, YAML snippets
+└── diagrams/                # source files for diagrams too complex to inline as Mermaid
 ```
 
----
-
-## 8. "Break it" — the incident principle
-
-Incidents are only attached to Tier 1 chapters with a Debug Lab, not spread across every chapter (to avoid forcing it). Examples already locked in:
-
-- ReplicaSet chapter: delete a Pod by hand → watch it self-heal.
-- Resource Limit chapter: set RAM too low → `OOMKilled`.
-- Ingress chapter: delete the Ingress Controller → all traffic breaks.
-- Debugging chapter: a Node goes `NotReady` → investigate and recover.
-- Backup chapter: simulate losing the entire cluster → recover via Velero.
+**Bilingual, maintained in parallel.** `handbook/` (English) and `handbook-vi/` (Vietnamese) are both real, complete editions — not one auto-translated from the other. Mirror the same chapter numbers, file slugs, and Part structure across both, but each language's prose is written and polished on its own terms (dialogue, idiom, and pacing that read naturally in that language, not a literal translation). When a scene, character beat, or structural fix is validated in one language, port it to the other.
 
 ---
 
-## 9. Reading path
+## 6. Reading path
 
-`handbook/` is the book — the primary artifact, meant to be read linearly. Every other folder (`project/`, `labs/`, `incidents/`, `challenges/`, `solutions/`, `mini-kubernetes/`) is a satellite, visited only when a chapter points to it — never a starting point.
+`handbook/` and `handbook-vi/` are the book — the primary artifact, meant to be read linearly, in whichever language the reader picks.
 
-- **Single entry point**: the root `README.md` — its only job is to explain how to read the book and point to `handbook/00-preface`.
-- **Linear table of contents**: `handbook/SUMMARY.md` (mdBook/GitBook style) lists the exact order from Part I → X, Chapter 1 → 63. It can be built into a PDF/ebook/website straight from this directory tree.
-- **Each chapter is self-contained enough to read without leaving the page** — the "🛠 Hands-on" section is a step-by-step guide with code quoted right there on the page, with a note like "full lab at `labs/ch06/`" for anyone who wants to go deeper, and "runnable code: `git checkout ch06` in `project/`" for anyone who wants to run it themselves.
-- **There is no separate reading order for project/labs/incidents/...** — they exist only to be referenced by a chapter. Developers who want to jump straight into the code still can (a shortcut), but the main path is always the handbook.
+- **Single entry point**: the root `README.md` — its only job is to explain how to read the book and point to `handbook/00-preface` (or `handbook-vi/00-preface`).
+- **Linear table of contents**: each edition has its own `SUMMARY.md`, updated as each chapter is actually written — never lists a chapter that doesn't exist yet.
+- **Every chapter is fully self-contained** — code and commands are quoted right there in the story. Nothing outside `handbook/`/`handbook-vi/` needs to be read to follow along.
 
-## 10. Open items
+## 7. Open items
 
-- [ ] Full mapping table of all 63 chapters → tier (the summary in section 6 is currently only at the Part level).
-- [ ] Detailed content for Chapter 4 (README, docker-compose, sample k8s manifests, `ch04` tag in `project/`) to serve as the template for later chapters.
-- [ ] Decision: writing solo or with collaborators — this directly affects how many chapters can reach Tier 1.
+- [ ] Decide what (if anything) replaces structured exercises — `challenges/` still exists, but its format isn't locked in yet.
+- [ ] Decision: writing solo or with collaborators.

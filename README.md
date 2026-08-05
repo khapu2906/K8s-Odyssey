@@ -3,18 +3,19 @@
 
 > Kubernetes is the main character. The project is just the vehicle.
 
-Kubernetes Odyssey is a story-driven Kubernetes book. Instead of a reference manual, it follows a single startup's journey — a project called **AI Workspace** — as it evolves from a `docker compose up` monolith into a production-grade platform, chapter by chapter, incident by incident.
+Kubernetes Odyssey is a story-driven Kubernetes book. Instead of a reference manual, it follows a single engineer's journey at a startup — a project called **AI Workspace** — from a `docker compose up` monolith to a production-grade platform on Kubernetes. No separate theory sections, no reference-manual structure: every chapter is one continuous scene, written in second person, where you hit a real problem, investigate it, and solve it.
 
-**Status: 🚧 scaffolding stage.** The repository structure and all 63 chapter files exist as a skeleton (headers, sections, `_TODO_` placeholders) — the actual writing hasn't started yet. Full design rationale lives in [`outline.md`](./outline.md).
+**Status: 🚧 early writing.** Chapter 1 is written, in both English and Vietnamese. The rest of the book is being written one chapter at a time, in order — not pre-scaffolded. Full design rationale lives in [`outline.md`](./outline.md).
+
+The book is maintained in two languages, in parallel: [`handbook/`](./handbook/) (English) and [`handbook-vi/`](./handbook-vi/) (Vietnamese) — both complete editions, not one translated from the other.
 
 ---
 
 ## How to read this book
 
-1. Start at [`handbook/00-preface/`](./handbook/00-preface/README.md).
-2. Follow [`handbook/SUMMARY.md`](./handbook/SUMMARY.md) in order — Part I through Part X, Chapter 1 through 63. That's the book.
-3. Every chapter is self-contained: it tells you when to switch to your terminal, quotes the exact code you need inline, and points you to `labs/`, `incidents/`, or `challenges/` if you want to go deeper.
-4. Nothing outside `handbook/` needs to be read on its own — those folders only exist to be referenced by a chapter.
+1. Start at [`handbook/00-preface/`](./handbook/00-preface/README.md) — or [`handbook-vi/00-preface/`](./handbook-vi/00-preface/README.md) for the Vietnamese edition.
+2. Follow that edition's `SUMMARY.md` in order.
+3. Every chapter is fully self-contained — code and commands are quoted right there in the story. Nothing outside the handbook needs to be read to follow along.
 
 ## The project: AI Workspace
 
@@ -24,24 +25,20 @@ The book teaches Kubernetes through one project that grows in complexity exactly
 - **Stage 2 (modular monolith):** adds Auth, Redis, and a Document module — still one deployable.
 - **Stage 3 (microservices):** splits into Auth, Workspace, AI, and Document services behind a gateway, with a queue, a vector DB, and object storage — only once there's a real reason to split.
 
-Full details and reasoning are in [`outline.md`](./outline.md#3-the-throughline-project-ai-workspace).
+Full details and reasoning are in [`outline.md`](./outline.md#2-the-throughline-project-ai-workspace).
 
 ## Repository layout
 
 ```
-handbook/       the book itself — read this, in order (63 chapters, 10 parts)
+handbook/       the book — English edition
+handbook-vi/    the book — Vietnamese edition, same structure
 project/        the single source of truth for code, tagged per chapter (ch04, ch09, ...)
-labs/           step-by-step guides referenced by chapters
-incidents/      real production-style incidents to debug
-challenges/     optional exercises, easy → expert
-solutions/      answers to challenges
-mini-kubernetes/  a small Kubernetes clone in Go, built in Part X
-diagrams/  cheatsheets/  scripts/
+challenges/     optional exercises, added per chapter as it's written
+cheatsheets/    quick-reference: kubectl commands, YAML snippets
+diagrams/       source files for diagrams too complex to inline as Mermaid
 ```
 
-Every folder has its own `README.md` explaining what belongs there.
-
-See [`outline.md`](./outline.md) for the complete design doc, including the chapter framework, the "one source of truth for code" rule, and the incident/"break it" philosophy.
+See [`outline.md`](./outline.md) for the complete design doc — the writing philosophy, the project's evolution, and the "one source of truth for code" rule.
 
 ## License
 

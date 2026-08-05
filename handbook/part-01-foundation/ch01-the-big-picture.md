@@ -8,8 +8,6 @@
 
 ---
 
-## Theory
-
 ### Day one
 
 You just joined a small startup as an engineer. The product is **AI Workspace** — people chat with an AI and get answers grounded in their own documents. It's early: a handful of users, one small team, no dedicated ops person. Your onboarding doc has exactly one useful line:

@@ -1,24 +1,58 @@
 # Preface
 
-Most Kubernetes books teach you `kubectl` commands. This one tells you a story, and Kubernetes happens to be how it gets solved.
+Most Kubernetes books start by teaching you commands.
 
-You'll follow **AI Workspace**, a startup's product, from a single `docker compose up` on a laptop to a production platform running across multiple services, a queue, a vector database, and a CI/CD pipeline. You won't see the whole architecture on day one — you'll build it the way real teams do: one problem at a time, driven by whatever the "CEO" (the book) throws at you next. Traffic spikes. A Pod gets deleted by accident. A Node goes `NotReady` at the worst possible time. You'll be the one who has to figure out why.
+This one starts with a startup.
 
-## Who this is for
+On your first day, you'll join a small team building **AI Workspace** — an application where users chat with AI and receive answers grounded in their own documents. At first, everything fits on a single laptop. One repository. Three containers. One command:
 
-Readers who already know what a container is and have run `docker compose up` at least once. No prior Kubernetes experience is assumed. If you've read a Kubernetes reference manual before and it didn't stick, this book is for you — the goal here is retention through repetition and real problems, not coverage.
+```bash
+docker compose up
+```
 
-## How the book is organized
+It works.
 
-- **Chapters 1–3** are pure theory — just enough vocabulary to start. No hands-on yet.
-- **From Chapter 4 on**, every chapter opens with a real problem in AI Workspace, gives you just enough theory to solve it, then has you solve it yourself.
-- Chapters marked **Tier 1 — Core** go further: a Production Notes section on real-world pitfalls, a Debug Lab where something is broken and you have to find out why, and interview-style questions to check what stuck.
-- **Part X — Under the Hood** is a different kind of chapter: instead of operating AI Workspace, you build a miniature Kubernetes yourself, in Go, to see exactly how the real thing works underneath.
+Until it doesn't.
 
-## How to read it
+A few weeks later, traffic grows. Containers crash. Deployments go wrong. Someone accidentally deletes a Pod. A Node becomes `NotReady` in the middle of the day. Customers start reporting errors before anyone on the team knows something is broken.
 
-Start here, then follow [`SUMMARY.md`](../SUMMARY.md) in order — it's the book's table of contents. Every chapter is self-contained: when it's time to open a terminal, it tells you so, and the code you need is quoted right there on the page. Folders outside `handbook/` (`project/`, `labs/`, `incidents/`, `challenges/`) exist only to be referenced by a chapter — you never need to browse them on their own.
+Nobody stops the story to explain Kubernetes.
 
-The full design philosophy behind this structure — why the project evolves the way it does, why code lives in exactly one place, why incidents are built in — is documented in [`outline.md`](../outline.md), at the repository root, if you're curious about the reasoning.
+Instead, every production problem forces you to learn one new concept, just enough to solve what's in front of you. By the time you finish the book, you won't just know Kubernetes—you'll understand *why* every piece exists, because you'll have needed each one before you learned its name.
 
-Let's build a cluster.
+This book follows the same journey thousands of engineering teams have taken: from a single `docker compose up` to running a production platform across multiple machines, with networking, storage, service discovery, autoscaling, observability, security, and CI/CD.
+
+Kubernetes isn't the destination.
+
+It's simply what you discover after solving enough real problems.
+
+---
+
+# Who this book is for
+
+This book is written for software engineers who already know the basics of containers. If you've built an application with Docker or run `docker compose up` before, you're ready to begin.
+
+No Kubernetes experience is expected.
+
+If you've ever tried reading the official documentation or a Kubernetes reference book and found yourself remembering commands but forgetting *why* they matter, this book was written for you.
+
+The goal isn't to memorize APIs.
+
+The goal is to build intuition.
+
+---
+
+# How this book is organized
+
+The story unfolds in the same order a real product evolves.
+
+* **Part I — Foundation** introduces the ideas behind containers, orchestration, and Kubernetes. These chapters are theory only—no terminal, no cluster, no YAML to write. The goal is to understand *why* Kubernetes exists before using it.
+
+* **From Part II onward**, every chapter begins with a problem inside AI Workspace. A production incident, a feature request, or a scaling challenge pushes the system forward. You'll learn only the concepts required to solve that specific problem, then apply them immediately.
+
+* There are no separate "Theory" or "Hands-on" sections to jump between. A chapter is one continuous scene — a problem shows up, you investigate, you find out what it's called, you fix it, sometimes you break it on purpose first. The commands and YAML appear exactly where you'd actually reach for them, mid-story.
+
+* **Under the Hood** takes a different approach. Instead of operating Kubernetes, you'll build a miniature version yourself in Go—one component at a time—to understand what happens behind every `kubectl apply`.
+
+By the end of the book, you'll have watched AI Workspace evolve from a simple Docker Compose application into a production-ready platform running on Kubernetes.
+
