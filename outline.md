@@ -120,7 +120,9 @@ Part X (Under the Hood) will get its own separate mini-Kubernetes-in-Go project 
 
 ## 5. One source of truth for code
 
-**There is exactly one place where code actually lives: `project/`** — a single AI Workspace repo, evolving commit by commit, with milestones marked by **git tags per chapter** (`ch04`, `ch09`, `ch19`...). To see the project exactly as it stood at a given chapter, just `git checkout ch09`.
+**There is exactly one place where code actually lives: `project/`** — a single AI Workspace repo, evolving commit by commit, kept intentionally simple: just enough to demonstrate that chapter's Kubernetes problem, never real business logic. Each stage (monolith → modular monolith → microservices, per §2) is what actually grows the service count — not narrative flourish.
+
+Milestones are marked by **a git tag per chapter** (`ch04`, `ch09`, `ch19`...), cut as a **GitHub Release** at the same time a chapter is published — roughly the cadence chapters go out (weekly, or every few days). A Release gives readers a browsable page for "this is the code as of Chapter 9," not just a tag they have to know to check out, though `git checkout ch09` still works identically. To see the project exactly as it stood at a given chapter, use either.
 
 Code shown inside a chapter's text **is not a separate file** — it's a direct quote embedded in the prose, copied verbatim from the corresponding file in `project/` at that chapter's tag, purely to illustrate while reading. Because it lives inside the text itself, there's no physical duplicate to keep in sync.
 
