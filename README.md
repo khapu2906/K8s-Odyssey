@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/facebook.png" alt="Kubernetes Odyssey cover art" width="480">
+</p>
+
 # Kubernetes Odyssey
 ### *From Docker Compose to Production Platform*
 
