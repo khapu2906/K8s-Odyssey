@@ -7,13 +7,13 @@ Kubernetes Odyssey is a story-driven Kubernetes book. Instead of a reference man
 
 **Status: 🚧 early writing.** Chapter 1 is written, in both English and Vietnamese. The rest of the book is being written one chapter at a time, in order — not pre-scaffolded. Full design rationale lives in [`outline.md`](./outline.md).
 
-The book is maintained in two languages, in parallel: [`handbook/`](./handbook/) (English) and [`handbook-vi/`](./handbook-vi/) (Vietnamese) — both complete editions, not one translated from the other.
+The book is maintained in two languages, in parallel: [`handbook/en/`](./handbook/en/) and [`handbook/vi/`](./handbook/vi/) — both complete editions, not one translated from the other.
 
 ---
 
 ## How to read this book
 
-1. Start at [`handbook/00-preface/`](./handbook/00-preface/README.md) — or [`handbook-vi/00-preface/`](./handbook-vi/00-preface/README.md) for the Vietnamese edition.
+1. Start at [`handbook/en/00-preface/`](./handbook/en/00-preface/README.md) — or [`handbook/vi/00-preface/`](./handbook/vi/00-preface/README.md) for the Vietnamese edition.
 2. Follow that edition's `SUMMARY.md` in order.
 3. Every chapter is fully self-contained — code and commands are quoted right there in the story. Nothing outside the handbook needs to be read to follow along.
 
@@ -30,8 +30,9 @@ Full details and reasoning are in [`outline.md`](./outline.md#2-the-throughline-
 ## Repository layout
 
 ```
-handbook/       the book — English edition
-handbook-vi/    the book — Vietnamese edition, same structure
+handbook/
+├── en/         the book — English edition
+└── vi/         the book — Vietnamese edition, same structure
 project/        the single source of truth for code, tagged per chapter (ch04, ch09, ...)
 challenges/     optional exercises, added per chapter as it's written
 cheatsheets/    quick-reference: kubectl commands, YAML snippets

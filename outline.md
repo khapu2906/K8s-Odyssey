@@ -129,19 +129,20 @@ Code shown inside a chapter's text **is not a separate file** — it's a direct 
 ```
 kubernetes-odyssey/
 ├── README.md
-├── handbook/                # English edition
-│   ├── SUMMARY.md
-│   ├── 00-preface/
-│   ├── part-01-foundation/
-│   │   ├── ch01-the-big-picture.md
-│   │   └── ...
-│   └── part-10-under-the-hood/
-│
-├── handbook-vi/             # Vietnamese edition — same structure, same chapters, its own SUMMARY.md
-│   ├── SUMMARY.md
-│   ├── 00-preface/
-│   └── part-01-foundation/
-│       └── ch01-the-big-picture.md
+├── handbook/
+│   ├── en/                  # English edition
+│   │   ├── SUMMARY.md
+│   │   ├── 00-preface/
+│   │   ├── part-01-foundation/
+│   │   │   ├── ch01-the-big-picture.md
+│   │   │   └── ...
+│   │   └── part-10-under-the-hood/
+│   │
+│   └── vi/                  # Vietnamese edition — same structure, same chapters, its own SUMMARY.md
+│       ├── SUMMARY.md
+│       ├── 00-preface/
+│       └── part-01-foundation/
+│           └── ch01-the-big-picture.md
 │
 ├── project/                # THE SINGLE SOURCE OF CODE — one repo, tagged per chapter
 ├── challenges/              # optional exercises, added per chapter as it's written
@@ -149,17 +150,17 @@ kubernetes-odyssey/
 └── diagrams/                # source files for diagrams too complex to inline as Mermaid
 ```
 
-**Bilingual, maintained in parallel.** `handbook/` (English) and `handbook-vi/` (Vietnamese) are both real, complete editions — not one auto-translated from the other. Mirror the same chapter numbers, file slugs, and Part structure across both, but each language's prose is written and polished on its own terms (dialogue, idiom, and pacing that read naturally in that language, not a literal translation). When a scene, character beat, or structural fix is validated in one language, port it to the other.
+**Bilingual, maintained in parallel.** `handbook/en/` and `handbook/vi/` are both real, complete editions — not one auto-translated from the other. Mirror the same chapter numbers, file slugs, and Part structure across both, but each language's prose is written and polished on its own terms (dialogue, idiom, and pacing that read naturally in that language, not a literal translation). When a scene, character beat, or structural fix is validated in one language, port it to the other.
 
 ---
 
 ## 6. Reading path
 
-`handbook/` and `handbook-vi/` are the book — the primary artifact, meant to be read linearly, in whichever language the reader picks.
+`handbook/en/` and `handbook/vi/` are the book — the primary artifact, meant to be read linearly, in whichever language the reader picks.
 
-- **Single entry point**: the root `README.md` — its only job is to explain how to read the book and point to `handbook/00-preface` (or `handbook-vi/00-preface`).
+- **Single entry point**: the root `README.md` — its only job is to explain how to read the book and point to `handbook/en/00-preface` (or `handbook/vi/00-preface`).
 - **Linear table of contents**: each edition has its own `SUMMARY.md`, updated as each chapter is actually written — never lists a chapter that doesn't exist yet.
-- **Every chapter is fully self-contained** — code and commands are quoted right there in the story. Nothing outside `handbook/`/`handbook-vi/` needs to be read to follow along.
+- **Every chapter is fully self-contained** — code and commands are quoted right there in the story. Nothing outside `handbook/` needs to be read to follow along.
 
 ## 7. Open items
 
