@@ -63,6 +63,7 @@ services:
     image: postgres:16
     environment:
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=aiworkspace
     volumes:
       - pgdata:/var/lib/postgresql/data
 
