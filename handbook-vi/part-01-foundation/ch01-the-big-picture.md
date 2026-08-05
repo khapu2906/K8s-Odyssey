@@ -1,4 +1,4 @@
-# Chương 1 — Luôn bắt đầu từ sự đơn giản nhất
+# Chương 1 — Bắt đầu từ sự đơn giản nhất
 
 
 ## Ngày đầu tiên
