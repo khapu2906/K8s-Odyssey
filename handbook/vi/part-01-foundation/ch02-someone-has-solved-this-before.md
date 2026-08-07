@@ -17,65 +17,48 @@ Need health checks.
 Need observability.
 ```
 
-Bạn zoom cái ảnh chụp trang sổ tay trên điện thoại, đọc lại lần thứ năm trong tối nay. Không có dòng nào trong đó khó hiểu. Nhưng gộp lại, nó trông như một hệ thống hoàn chỉnh đang đòi được xây — mà bạn thì chẳng biết bắt đầu từ đâu.
+Bạn mở cái ảnh chụp trang sổ tay trên điện thoại, đọc lại không biết bao nhiêu lần trong tối nay. Không có dòng nào trong đó khó hiểu. Nhưng khi bạn đọc, nó làm bạn ngứa ngáy khó chịu, vì đúng là một bài toán khó thuật sự. Bạn đã nghĩ sẽ dùng một hệ thống gì đó đề kiểm soát, nhưng không biết nó là gì.
 
-Bạn nghĩ đến Martin. Hai công ty trước, hai đứa từng làm chung một dự án outsource không bao giờ ra mắt, nhưng Martin là kiểu người thích đọc postmortem của công ty khác chỉ vì tò mò. Giờ nghe nói đang làm ở đâu đó có traffic thật.
+Bạn nghĩ đến Martin. Hai đứa từng làm chung một dự án outsource không bao giờ ra mắt, nhưng Martin là kiểu người thích đọc postmortem của công ty khác chỉ vì tò mò. Giờ nghe nói đang làm ở đâu đó có traffic khủng lắm, chắc cu cháu biết nên làm gì với trường hợp này.
 
 Bạn nhắn tin.
 
 ```
 Bạn
-ê hỏi ngu tí
-
-Bạn
-startup t giờ có 312 user thôi
-
-Bạn
-mà hơn chục request 1 lúc là auto sập 🙃
-
-Bạn
-cảm giác như đang reinvent the wheel, chắc
-có ai làm rồi
-
-Bạn
-t ghi ra sổ hết đống vấn đề luôn á, dài thiệt
+> ê cu hỏi ngu tí
+> quả startup bên t giờ mới có hơn 300 cháu vào thôi
+> mà hơn chục ccu là auto sập 🙃
+> thử horizontal scale rồi  mà vẫn chết, éo biết giờ làm sao, cứu giá phát
+> t ghi ra mấy vấn đề xem check hộ bạn phát nào
+[gửi kèm ảnh check list]
 ```
 
 ```
 Martin
-haha đúng rồi đó, kinh điển
-
-Martin
-gọi đc ko
+> Đâu xem nào :3
+> Gọi thầy đi :)) rồi làm gì làm tiếp
 ```
 
 ### Cuộc gọi
 
-> "Gửi cái list coi."
+> MT: "Lol :)) cái này mày phải dùng K8s cho thầy."
 
-Bạn chụp lại trang sổ, gửi qua.
+> Bạn: "Là cái gì vậy?"
 
-Vài giây im lặng.
+> MT: "Ừm... éo biết giải thích như nào nhỉ. Đơn giản là — Docker chạy một container, cái này chạy cả đống container, trên cả đống máy, K8s lo mấy cái mày đang phải làm bằng tay."
 
-> "Ờ. Có tên rồi đó. Kubernetes."
+> Bạn: "Kiểu tự restart á?"
 
-> "Là cái gì vậy?"
+> MT: "Một phần thôi. Nó không phải chạy lệnh một phát rồi xong như compose đâu. Nó chạy hoài, kiểm tra liên tục, sai là tự sửa."
 
-> "Ừm... tao giải thích dở lắm nha. Nói kiểu ngắn nhất là — Docker chạy một container, cái này chạy cả đống container, trên cả đống máy, tự lo mấy cái mày đang phải làm bằng tay."
+> Bạn "Nghe thơm nhỉ, ba giờ sáng container chết có gì tự dựng lại giùm."
 
-> "Kiểu tự restart á?"
+> MT: "Ừ ví dụ vậy. Còn nhiều cái khác nữa."
+> MT: "Tao đi chạy đây, mày tự mò đi, dựng một cluster nhỏ trên laptop xem"
 
-> "Một phần thôi. Nó không phải chạy lệnh một phát rồi xong như compose đâu. Nó chạy hoài, kiểm tra liên tục, sai là tự sửa."
+> Bạn: "Ok... một câu thôi. hơn 300 user thì có cần cái này không nhỉ?"
 
-> "Vậy đúng ý t rồi, ba giờ sáng container chết có gì tự dựng lại giùm."
-
-> "Ừ ví dụ vậy. Còn nhiều cái khác nữa."
-
-> "Tao đang chạy đây, mày tự mò đi, cài thử một cluster nhỏ trên laptop, không cần cloud gì hết. Học vậy nhanh hơn nghe tao nói nhiều."
-
-> "Ok... một câu thôi. 312 user thì có cần cái này không hay t đang làm quá?"
-
-> "Thiệt tình á? Deploy tuần này thì hơi quá. Học thì không quá đâu, traffic mày chỉ có tăng thôi. Thôi tao chạy đây."
+> MT: "Thiệt tình á? Áp vào quả hệ thống bây giờ thì hơi có vấn đề. Nhưng nên học, nó giải quyết được triệt đề đấy, traffic mày chỉ có tăng thôi. Thôi tao chạy đây."
 
 Cuộc gọi kết thúc, đột ngột hơn bạn tưởng. Bốn phút mười hai giây. Không phải một buổi giảng bài. Chỉ đủ để biết: đúng, cái này có tên, và hướng đi tiếp theo là ở đó.
 
