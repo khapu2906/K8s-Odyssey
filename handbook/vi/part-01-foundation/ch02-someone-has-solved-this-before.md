@@ -36,6 +36,9 @@ mà hơn chục request 1 lúc là auto sập 🙃
 Bạn
 cảm giác như đang reinvent the wheel, chắc
 có ai làm rồi
+
+Bạn
+t ghi ra sổ hết đống vấn đề luôn á, dài thiệt
 ```
 
 ```
