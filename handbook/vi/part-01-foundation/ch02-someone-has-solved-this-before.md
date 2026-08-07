@@ -19,59 +19,60 @@ Need observability.
 
 Bạn zoom cái ảnh chụp trang sổ tay trên điện thoại, đọc lại lần thứ năm trong tối nay. Không có dòng nào trong đó khó hiểu. Nhưng gộp lại, nó trông như một hệ thống hoàn chỉnh đang đòi được xây — mà bạn thì chẳng biết bắt đầu từ đâu.
 
-Bạn nghĩ đến Minh. Hai công ty trước, hai đứa từng làm chung một dự án outsource không bao giờ ra mắt, nhưng Minh là kiểu người thích đọc postmortem của công ty khác chỉ vì tò mò. Giờ nghe nói đang làm ở đâu đó có traffic thật.
+Bạn nghĩ đến Martin. Hai công ty trước, hai đứa từng làm chung một dự án outsource không bao giờ ra mắt, nhưng Martin là kiểu người thích đọc postmortem của công ty khác chỉ vì tò mò. Giờ nghe nói đang làm ở đâu đó có traffic thật.
 
 Bạn nhắn tin.
 
 ```
 Bạn
-ê, hỏi ngu tí. bên mình mới startup, scale còn bé xíu
-(312 user, thật sự buồn cười) nhưng cứ hễ có hơn
-chục request cùng lúc là có gì đó hỏng
+ê hỏi ngu xíu
 
 Bạn
-cảm giác như đang tự phát minh lại thứ gì đó
-chắc chắn đã có người làm rồi
+bên t startup nhỏ xíu, có 312 user thôi mà cứ hễ
+nhiều hơn chục request cùng lúc là hỏng gì đó
+
+Bạn
+đang thấy giống kiểu đang tự phát minh lại cái gì
+đó chắc chắn có người làm rồi
 ```
 
 ```
-Minh
-lol yes. classic. 2s
+Martin
+haha đúng rồi đó, kinh điển
+
+Martin
+gọi đc ko
 ```
 
 ### Cuộc gọi
 
-Điện thoại rung. Nền có tiếng nhạc, tiếng người nói chuyện — Minh đang ở đâu đó ồn ào, chắc vẫn còn ở văn phòng.
-
-> "Ê." Có tiếng ghế kéo, tiếng Minh chắc đang tìm chỗ yên tĩnh hơn. "Rồi, gửi tao xem cái list đi, đọc miệng lâu."
+> "Gửi cái list coi."
 
 Bạn chụp lại trang sổ, gửi qua.
 
-Vài giây im lặng — Minh đang đọc.
+Vài giây im lặng.
 
-> "Ừ. Cái này có tên rồi. Kubernetes."
+> "Ờ. Có tên rồi đó. Kubernetes."
 
-> "Nó là cái gì vậy?"
+> "Là cái gì vậy?"
 
-> "Uhm..." Tiếng thở dài nhẹ, kiểu người sắp phải giải thích một thứ đã quá quen tới mức quên mất lúc đầu mình học nó khó thế nào. "Tao giải thích dở lắm, thật. Nói ngắn gọn là — mày biết Docker chạy một container. Cái này chạy *nhiều* container, trên *nhiều* máy, và tự lo phần mày đang phải lo bằng tay."
+> "Ừm... tao giải thích dở lắm nha. Nói kiểu ngắn nhất là — Docker chạy một container, cái này chạy cả đống container, trên cả đống máy, tự lo mấy cái mày đang phải làm bằng tay."
 
-> "Kiểu... auto-restart á?"
+> "Kiểu tự restart á?"
 
-> "Đó chỉ là một phần thôi. Nó không phải 'chạy lệnh một lần rồi xong' như compose. Nó cứ chạy hoài, kiểm tra liên tục — cái đang chạy có đúng cái đáng lẽ phải chạy không, sai thì tự sửa."
+> "Một phần thôi. Nó không phải chạy lệnh một phát rồi xong như compose đâu. Nó chạy hoài, kiểm tra liên tục, sai là tự sửa."
 
-> "Ba giờ sáng, container chết, có gì tự restart giùm tao là được rồi."
+> "Vậy đúng ý t rồi, ba giờ sáng container chết có gì tự dựng lại giùm."
 
-> "Đúng, đó là một ví dụ. Còn chục cái khác nữa."
+> "Ừ ví dụ vậy. Còn nhiều cái khác nữa."
 
-Có tiếng ai đó gọi Minh ở đầu dây bên kia — nghe không rõ, nhưng Minh trả lời "ừ hai phút" rồi quay lại máy.
+> "Tao đang chạy đây, mày tự mò đi, cài thử một cluster nhỏ trên laptop, không cần cloud gì hết. Học vậy nhanh hơn nghe tao nói nhiều."
 
-> "Nghe, tao đang phải chạy. Mày cứ tự mò trước đi, cài thử một cluster nhỏ trên laptop, không cần cloud gì hết. Học nhanh hơn nghe tao giảng nhiều."
+> "Ok... một câu thôi. 312 user thì có cần cái này không hay t đang làm quá?"
 
-> "Được rồi... một câu thôi. 312 user thì có cần cái này không, hay đang làm quá?"
+> "Thiệt tình á? Deploy tuần này thì hơi quá. Học thì không quá đâu, traffic mày chỉ có tăng thôi. Thôi tao chạy đây."
 
-> "Thật lòng?" Minh cười. "Hơi quá, nếu tính deploy tuần này. Nhưng học thì không quá đâu — traffic mày chỉ có tăng, không giảm. Thôi tao chạy đây, làm gì không hiểu nhắn tao."
-
-Cuộc gọi kết thúc, đột ngột hơn bạn tưởng. Bạn nhìn màn hình điện thoại — 4 phút 12 giây. Không phải là một buổi giảng bài. Chỉ là xác nhận: đúng, cái này có tên, đúng hướng đi tìm hiểu tiếp là ở đó.
+Cuộc gọi kết thúc, đột ngột hơn bạn tưởng. Bốn phút mười hai giây. Không phải một buổi giảng bài. Chỉ đủ để biết: đúng, cái này có tên, và hướng đi tiếp theo là ở đó.
 
 ### Tự mò
 
@@ -95,7 +96,7 @@ Bạn ngồi tựa lưng ra ghế. Không có một câu trả lời sạch sẽ
 
 Nhưng có một thứ lặp lại ở gần như mọi bài, dưới mọi hình thức khác nhau: *đừng học hết lý thuyết rồi mới bắt đầu — cứ chạy thử một cái nhỏ, rồi học dần từ đó.*
 
-Đúng điều Minh vừa nói, chỉ có điều lần này bạn tự tìm ra, không phải được kể cho nghe.
+Đúng điều Martin vừa nói, chỉ có điều lần này bạn tự tìm ra, không phải được kể cho nghe.
 
 Bạn đóng hết mấy cái tab tranh cãi lại, gõ một câu tìm kiếm khác — câu mà thật ra bạn muốn biết hơn cả:
 
