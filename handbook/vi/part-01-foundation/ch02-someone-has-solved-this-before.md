@@ -25,15 +25,17 @@ Bạn nhắn tin.
 
 ```
 Bạn
-ê hỏi ngu xíu
+ê hỏi ngu tí
 
 Bạn
-bên t startup nhỏ xíu, có 312 user thôi mà cứ hễ
-nhiều hơn chục request cùng lúc là hỏng gì đó
+startup t giờ có 312 user thôi
 
 Bạn
-đang thấy giống kiểu đang tự phát minh lại cái gì
-đó chắc chắn có người làm rồi
+mà hơn chục request 1 lúc là auto sập 🙃
+
+Bạn
+cảm giác đang reinvent cái gì đó chắc có
+người làm rồi
 ```
 
 ```
