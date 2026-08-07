@@ -81,9 +81,17 @@ A comparison page pitting Kubernetes against Docker Swarm against Nomad against 
 
 A tweet: *"kubernetes almost killed my startup,"* quote-tweeting a screenshot of a six-figure cloud bill. Right underneath it, another tweet: *"switched to k8s, best decision we made, here's why 🧵."*
 
-You lean back in your chair. There's no clean answer anywhere — just a pile of people who've stood exactly where you're standing now, each one walking away with a different lesson, sometimes the opposite one.
+But on the eighth tab, you actually stop.
 
-But one thing keeps showing up, in every different shape: *don't learn all the theory before you start — spin up something small first, and learn as you go.*
+Not another sprawling blog post. A short README from someone's demo project, written by someone who was clearly just as frustrated as you are tonight. Four lines, and you read them twice to make sure you got it right:
+
+> You don't tell Kubernetes what to do. You write down what you *want* — something like "I want 3 copies of this app, always running, always reachable at this address" — and save it. That's called the *desired state*. Something called the control plane constantly watches the real system, compares it against what you wrote, and fixes the difference the moment it drifts. The containers themselves run on separate machines called nodes — the control plane never runs your app itself, it just directs and watches.
+
+You read it again. Oh. You don't "run Kubernetes" the way you run a command. You *describe* the system you want, and something that's always awake keeps forcing reality to match that description. The thing Martin said on the call — "it just runs, forever, checking" — finally has a shape you can actually picture.
+
+You lean back in your chair. There's no clean answer anywhere for "how do I learn Kubernetes" — just a pile of people who've stood exactly where you're standing now, each one walking away with a different lesson, sometimes the opposite one. But *desired state* — that part, you've got now. For real.
+
+And one other thing keeps showing up, in every different shape: *don't learn all the theory before you start — spin up something small first, and learn as you go.*
 
 The same thing Martin just told you. Except this time you found it yourself, instead of being handed it.
 

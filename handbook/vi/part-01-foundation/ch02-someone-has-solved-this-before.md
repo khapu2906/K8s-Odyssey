@@ -41,7 +41,7 @@ Martin
 
 ### Cuộc gọi
 
-> MT: "Lol :)) cái này mày phải dùng K8s cho thầy."
+> MT: "Lol :)) cái này mày phải dùng K8s cho tao."
 
 > Bạn: "Là cái gì vậy?"
 
@@ -54,6 +54,7 @@ Martin
 > Bạn "Nghe thơm nhỉ, ba giờ sáng container chết có gì tự dựng lại giùm."
 
 > MT: "Ừ ví dụ vậy. Còn nhiều cái khác nữa."
+
 > MT: "Tao đi chạy đây, mày tự mò đi, dựng một cluster nhỏ trên laptop xem"
 
 > Bạn: "Ok... một câu thôi. hơn 300 user thì có cần cái này không nhỉ?"
@@ -80,9 +81,17 @@ Một trang so sánh Kubernetes với Docker Swarm với Nomad với "just use E
 
 Một tweet: *"kubernetes almost killed my startup"*, thả trong quote-tweet là ảnh chụp hoá đơn cloud sáu chữ số. Ngay bên dưới gợi ý, một tweet khác: *"switched to k8s, best decision we made, here's why 🧵"*.
 
-Bạn ngồi tựa lưng ra ghế. Không có một câu trả lời sạch sẽ nào cả — chỉ có một đống người đã từng đứng đúng chỗ bạn đang đứng, mỗi người rút ra một bài học khác nhau, đôi khi ngược hẳn nhau.
+Nhưng đến tab thứ tám, bạn dừng lại thật sự lâu.
 
-Nhưng có một thứ lặp lại ở gần như mọi bài, dưới mọi hình thức khác nhau: *đừng học hết lý thuyết rồi mới bắt đầu — cứ chạy thử một cái nhỏ, rồi học dần từ đó.*
+Không phải một bài blog dài dòng. Một cái README ngắn của một dự án demo nào đó, viết bởi người rõ ràng cũng từng bực bội y như bạn tối nay. Chỉ bốn dòng, nhưng bạn phải đọc lại lần hai để chắc mình hiểu đúng:
+
+> Bạn không ra lệnh cho Kubernetes phải làm gì. Bạn viết ra *bạn muốn cái gì* — kiểu "tôi muốn 3 bản sao của app này, luôn luôn chạy, luôn truy cập được ở địa chỉ này" — rồi lưu lại. Cái đó gọi là *desired state*. Có một thứ (gọi là control plane) liên tục nhìn vào hệ thống thật, so với cái bạn viết, thấy khác là tự sửa cho khớp. Container thật sự chạy trên các máy khác, gọi là node — control plane không chạy app của bạn, nó chỉ ra lệnh và theo dõi thôi.
+
+Bạn đọc lại lần nữa. À. Không phải bạn "chạy Kubernetes" như chạy một lệnh rồi xong. Bạn *mô tả* hệ thống bạn muốn có, rồi có một thứ luôn thức, liên tục làm cho thực tế khớp với mô tả đó. Cái Martin nói lúc nãy — "chạy hoài, kiểm tra liên tục, sai là tự sửa" — giờ bạn mới thực sự hình dung được nó trông như thế nào.
+
+Bạn ngồi tựa lưng ra ghế. Không có một câu trả lời sạch sẽ nào cho "nên học Kubernetes kiểu gì" — chỉ có một đống người từng đứng đúng chỗ bạn đang đứng, mỗi người rút ra một bài học khác nhau, đôi khi ngược hẳn nhau. Nhưng riêng cái ý *desired state* thì bạn nắm được rồi, chắc chắn.
+
+Và có một thứ khác lặp lại ở gần như mọi bài, dưới mọi hình thức khác nhau: *đừng học hết lý thuyết rồi mới bắt đầu — cứ chạy thử một cái nhỏ, rồi học dần từ đó.*
 
 Đúng điều Martin vừa nói, chỉ có điều lần này bạn tự tìm ra, không phải được kể cho nghe.
 
