@@ -34,8 +34,8 @@ Bạn
 mà hơn chục request 1 lúc là auto sập 🙃
 
 Bạn
-cảm giác đang reinvent cái gì đó chắc có
-người làm rồi
+cảm giác như đang reinvent the wheel, chắc
+có ai làm rồi
 ```
 
 ```
