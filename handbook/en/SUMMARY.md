@@ -5,3 +5,10 @@
 # Part I — Foundation
 - [1. Start From the Simplest Thing](part-01-foundation/ch01-the-big-picture.md)
 - [2. Someone Has Solved This Before](part-01-foundation/ch02-someone-has-solved-this-before.md)
+- [3. No Credit Card Needed](part-01-foundation/ch03-no-credit-card-needed.md)
+
+# Part II — First Cluster
+- [4. Not Just a Concept Anymore](part-02-first-cluster/ch04-not-just-a-concept-anymore.md)
+- [5. Before Dumping Everything On It](part-02-first-cluster/ch05-kubectl.md)
+- [6. Ran For 12 Seconds](part-02-first-cluster/ch06-first-pod.md)
+- [7. Someone's Finally Counting](part-02-first-cluster/ch07-someone-finally-counting.md)

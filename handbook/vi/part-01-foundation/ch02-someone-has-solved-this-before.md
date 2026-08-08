@@ -71,25 +71,46 @@ Bạn gõ vào ô tìm kiếm:
 what is kubernetes
 ```
 
-Kết quả đầu tiên là trang chủ chính thức — một đoạn định nghĩa nghe rất chững chạc, rất... không giúp ích gì mấy. Bạn cuộn xuống, mở thêm năm tab.
-
-Một bài blog năm 2019 giải thích Kubernetes bằng ẩn dụ container vận chuyển đường biển, dài 4000 từ, bạn bỏ cuộc ở đoạn thứ ba.
-
-Một thread trên Reddit, top comment: *"honestly for your scale just use a VPS and a bash script, k8s will eat your team alive."* Comment thứ hai, 200 upvote, cãi lại: *"terrible advice, you'll rebuild half of k8s badly by hand within a year."* Hai người tranh luận nhau dài dằng dặc, không ai chịu ai.
-
-Một trang so sánh Kubernetes với Docker Swarm với Nomad với "just use ECS if you're on AWS", mỗi cột đều tự nhận mình đơn giản hơn cột bên cạnh.
-
-Một tweet: *"kubernetes almost killed my startup"*, thả trong quote-tweet là ảnh chụp hoá đơn cloud sáu chữ số. Ngay bên dưới gợi ý, một tweet khác: *"switched to k8s, best decision we made, here's why 🧵"*.
-
-Nhưng đến tab thứ tám, bạn dừng lại thật sự lâu.
-
-Không phải một bài blog dài dòng. Một cái README ngắn của một dự án demo nào đó, viết bởi người rõ ràng cũng từng bực bội y như bạn tối nay. Chỉ bốn dòng, nhưng bạn phải đọc lại lần hai để chắc mình hiểu đúng:
+Kết quả đầu tiên là trang chủ chính thức, chững chạc mà chẳng giúp được gì. Nửa tiếng sau, cả chục tab mở ra, bạn đã tìm ra một cái README ngắn của một dự án demo nào đó, viết bởi người rõ ràng cũng từng bực bội y như bạn tối nay:
 
 > Bạn không ra lệnh cho Kubernetes phải làm gì. Bạn viết ra *bạn muốn cái gì* — kiểu "tôi muốn 3 bản sao của app này, luôn luôn chạy, luôn truy cập được ở địa chỉ này" — rồi lưu lại. Cái đó gọi là *desired state*. Có một thứ (gọi là control plane) liên tục nhìn vào hệ thống thật, so với cái bạn viết, thấy khác là tự sửa cho khớp. Container thật sự chạy trên các máy khác, gọi là node — control plane không chạy app của bạn, nó chỉ ra lệnh và theo dõi thôi.
 
-Bạn đọc lại lần nữa. À. Không phải bạn "chạy Kubernetes" như chạy một lệnh rồi xong. Bạn *mô tả* hệ thống bạn muốn có, rồi có một thứ luôn thức, liên tục làm cho thực tế khớp với mô tả đó. Cái Martin nói lúc nãy — "chạy hoài, kiểm tra liên tục, sai là tự sửa" — giờ bạn mới thực sự hình dung được nó trông như thế nào.
+Bạn đọc lại lần nữa. À. Không phải bạn "chạy Kubernetes" như chạy một lệnh rồi xong. Bạn *mô tả* hệ thống bạn muốn có, rồi có một thứ luôn thức, liên tục làm cho thực tế khớp với mô tả đó.
 
-Bạn ngồi tựa lưng ra ghế. Không có một câu trả lời sạch sẽ nào cho "nên học Kubernetes kiểu gì" — chỉ có một đống người từng đứng đúng chỗ bạn đang đứng, mỗi người rút ra một bài học khác nhau, đôi khi ngược hẳn nhau. Nhưng riêng cái ý *desired state* thì bạn nắm được rồi, chắc chắn.
+Bạn mở một file trống, gõ thẳng vào đó, đối chiếu ngược lại với chính cái danh sách bạn viết ba tuần trước:
+
+```
+Need scaling
+→ có field tên là "replicas", khai N thay vì 1 là nó tự thêm/bớt container. đọc lướt còn thấy chữ HPA (Horizontal Pod Autoscaler) — chắc là bản tự động theo traffic, chưa rõ chi tiết
+
+Need restart
+→ cái đứng ra canh số lượng container gọi là "ReplicaSet". container chết là nó tự tạo cái mới, không cần ai gõ lệnh lúc 3h sáng
+
+Need deployment
+→ toàn bộ cái vụ ReplicaSet + rolling update này nằm trong 1 object gọi là "Deployment". đổi version thì dựng bản mới song song bản cũ, chuyển traffic từ từ, lỗi thì rollback lại được luôn
+
+Need networking / service discovery
+→ có object tên "Service", cho mỗi nhóm container 1 tên cố định, container khác cứ gọi theo tên đó (qua DNS nội bộ) là kết nối được, không cần biết IP thật
+
+Need scheduling
+→ có 1 thành phần tên "Scheduler" trong control plane, biết máy nào (gọi là "Node") còn CPU/RAM trống, tự đặt container mới vào đó
+
+Need storage
+→ có khái niệm "Volume" tách rời khỏi container, còn cái giữ dữ liệu lâu dài dù container chết/dời máy thì gọi là "PersistentVolume" (PV) và "PersistentVolumeClaim" (PVC)
+
+Need secrets
+→ có object riêng tên "Secret" để lưu password/API key, và "ConfigMap" cho mấy cái config không nhạy cảm — không commit thẳng vào code hay file compose như hiện tại
+
+Need health checks
+→ 2 loại check tên "liveness probe" (còn sống không, chết thì restart) và "readiness probe" (sẵn sàng nhận request chưa, chưa sẵn sàng thì tạm ngưng route traffic, không cần restart)
+
+Need observability
+→ ??? đọc thấy nhắc tới Prometheus, Grafana, metrics-server nhưng mỗi bài dùng khác nhau, không rõ cái nào là "chuẩn" của Kubernetes hay là add-on bên thứ 3. để sau
+```
+
+Không phải dòng nào cũng rõ ràng — riêng "observability" đọc ba nguồn khác nhau vẫn chưa hình dung nổi cụ thể là gì. Nhưng bảy trên chín dòng, giờ bạn đã có câu trả lời, dù mới chỉ ở mức khái niệm. Ba tuần trước, danh sách này trông như một bức tường. Giờ nó trông như bản tính năng của một phần mềm đã có sẵn — chỉ là bạn chưa từng đụng tới.
+
+Bạn ngồi tựa lưng ra ghế. Không có một câu trả lời sạch sẽ nào cho "nên học Kubernetes kiểu gì" — chỉ có một đống người từng đứng đúng chỗ bạn đang đứng, mỗi người rút ra một bài học khác nhau, đôi khi ngược hẳn nhau. Nhưng riêng cái ý *desired state*, và bảy dòng vừa đối chiếu xong, thì bạn nắm được rồi, chắc chắn.
 
 Và có một thứ khác lặp lại ở gần như mọi bài, dưới mọi hình thức khác nhau: *đừng học hết lý thuyết rồi mới bắt đầu — cứ chạy thử một cái nhỏ, rồi học dần từ đó.*
 

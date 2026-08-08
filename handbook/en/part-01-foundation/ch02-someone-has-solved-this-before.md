@@ -71,25 +71,46 @@ You type into the search bar:
 what is kubernetes
 ```
 
-The first result is the official homepage — a definition that sounds very composed and very... unhelpful. You scroll past it, open five more tabs.
-
-A 2019 blog post explains Kubernetes through a shipping-container metaphor, four thousand words long, and you give up three paragraphs in.
-
-A Reddit thread, top comment: *"honestly for your scale just use a VPS and a bash script, k8s will eat your team alive."* Second comment, 200 upvotes, pushing back: *"terrible advice, you'll rebuild half of k8s badly by hand within a year."* The two of them argue it out for pages, neither backing down.
-
-A comparison page pitting Kubernetes against Docker Swarm against Nomad against "just use ECS if you're on AWS," every column insisting it's simpler than the one next to it.
-
-A tweet: *"kubernetes almost killed my startup,"* quote-tweeting a screenshot of a six-figure cloud bill. Right underneath it, another tweet: *"switched to k8s, best decision we made, here's why 🧵."*
-
-But on the eighth tab, you actually stop.
-
-Not another sprawling blog post. A short README from someone's demo project, written by someone who was clearly just as frustrated as you are tonight. Four lines, and you read them twice to make sure you got it right:
+The first result is the official homepage, composed and completely unhelpful. Half an hour later, a dozen tabs deep, you land on a short README from someone's demo project, written by someone clearly just as frustrated as you are tonight:
 
 > You don't tell Kubernetes what to do. You write down what you *want* — something like "I want 3 copies of this app, always running, always reachable at this address" — and save it. That's called the *desired state*. Something called the control plane constantly watches the real system, compares it against what you wrote, and fixes the difference the moment it drifts. The containers themselves run on separate machines called nodes — the control plane never runs your app itself, it just directs and watches.
 
-You read it again. Oh. You don't "run Kubernetes" the way you run a command. You *describe* the system you want, and something that's always awake keeps forcing reality to match that description. The thing Martin said on the call — "it just runs, forever, checking" — finally has a shape you can actually picture.
+You read it again. Oh. You don't "run Kubernetes" the way you run a command. You *describe* the system you want, and something that's always awake keeps forcing reality to match that description.
 
-You lean back in your chair. There's no clean answer anywhere for "how do I learn Kubernetes" — just a pile of people who've stood exactly where you're standing now, each one walking away with a different lesson, sometimes the opposite one. But *desired state* — that part, you've got now. For real.
+You open a blank file and start typing, matching it against the exact list you wrote three weeks ago:
+
+```
+Need scaling
+→ there's a field called "replicas" — set it to N instead of 1 and it adds/removes containers on its own. skimmed past something called HPA (Horizontal Pod Autoscaler) too — guessing that's the auto-adjust-to-traffic version, not clear on details
+
+Need restart
+→ the thing that keeps count of containers is called a "ReplicaSet." container dies, it just makes a new one, nobody has to type a command at 3am
+
+Need deployment
+→ the whole ReplicaSet + rolling update thing lives inside one object called a "Deployment." ship a new version, it stands up the new one alongside the old, shifts traffic over gradually, can roll back if the new one's broken
+
+Need networking / service discovery
+→ there's an object called "Service" — gives a group of containers one fixed name, other containers just call that name (over internal DNS) and it connects, no need to know a real IP
+
+Need scheduling
+→ a piece of the control plane called the "Scheduler" knows which machine (called a "Node") has free CPU/RAM and places new containers there on its own
+
+Need storage
+→ there's a concept called "Volume," separate from the container itself. the kind that survives a container dying or moving machines is called "PersistentVolume" (PV) and "PersistentVolumeClaim" (PVC)
+
+Need secrets
+→ there's a dedicated object called "Secret" for passwords/API keys, and "ConfigMap" for the non-sensitive config — not committed straight into code or a compose file like right now
+
+Need health checks
+→ two kinds of checks, called "liveness probe" (is it alive, restart if not) and "readiness probe" (is it ready for traffic yet, hold off routing if not, no restart needed)
+
+Need observability
+→ ??? kept seeing Prometheus, Grafana, metrics-server, but every post used a different combination, unclear what's actually built into Kubernetes vs. a third-party add-on. later
+```
+
+Not every line is fully clear — "observability" especially, three different sources and you still can't picture what it actually looks like. But seven out of nine, you now have an answer, even if only conceptual. Three weeks ago this list looked like a wall. Now it reads like the feature list of software that already exists — you just never happened to use it.
+
+You lean back in your chair. There's no clean answer anywhere for "how do I learn Kubernetes" — just a pile of people who've stood exactly where you're standing now, each one walking away with a different lesson, sometimes the opposite one. But *desired state*, and the seven lines you just matched up — that part, you've got now. For real.
 
 And one other thing keeps showing up, in every different shape: *don't learn all the theory before you start — spin up something small first, and learn as you go.*
 
