@@ -14,7 +14,7 @@ You've barely set the laptop down when standup starts, and you're still groggy f
 
 You're about to just write YAML for `chat-api` and `kubectl apply` it, dump everything onto the cluster and be done with it. But you stop — you don't actually know `kubectl` beyond `get nodes` and `get pods`. Throwing a pile of stuff at a cluster you don't understand the organization of doesn't feel right.
 
-You try something first:
+`get nodes`, `get pods` — same verb both times. You gamble that `kubectl` follows a fixed shape: `get` plus whatever type of thing you want to see. Try it on something you've never typed before.
 
 ```bash
 kubectl get namespaces
@@ -40,7 +40,23 @@ namespace/ai-workspace created
 
 A namespace, it turns out, is simpler than you expected: just a way to split one cluster into separate compartments. `ai-workspace` and `kube-system` still share the same control plane, the same nodes as a minute ago — names just don't collide across compartments. A Pod named `chat-api` in `ai-workspace` and a Pod named `chat-api` in some other namespace would be two completely separate things, no conflict. Not a separate cluster — just a separate drawer in the same cabinet.
 
-Housekeeping done. Now the part you're actually curious about: what else does `kubectl` know how to do that you've never typed.
+Housekeeping done. Now the part you're actually curious about: what else does `kubectl` know how to do that you've never typed. You run `kubectl --help`, just to scan the full list.
+
+```
+Basic Commands (Intermediate):
+  explain         Get documentation for a resource
+  get             Display one or many resources
+  edit            Edit a resource on the server
+  delete          Delete resources by file names, stdin, resources and names, or by resources and label selector
+
+...
+
+Other Commands:
+  api-resources   Print the supported API resources on the server
+  ...
+```
+
+Two lines jump out at once: `api-resources` and `explain`. Try the first one.
 
 ```bash
 kubectl api-resources | head -20
@@ -48,7 +64,7 @@ kubectl api-resources | head -20
 
 A long list — `pods`, `deployments`, `services`, `configmaps`, `secrets`, dozens of other names you've never heard of. This is the full map of everything Kubernetes knows how to create. You don't read all of it, but you file it away: whatever you forget, check here first.
 
-You try one more command, just curious what a `pod` actually consists of:
+Now the other line. `explain` — "Get documentation for a resource." Try it too, just curious what a `pod` actually consists of:
 
 ```bash
 kubectl explain pod

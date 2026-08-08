@@ -50,6 +50,8 @@ kubectl apply -f chat-api-deployment.yaml
 deployment.apps/chat-api created
 ```
 
+Wanting to see all the layers at once, you remember `kubectl --help` showed an example of listing several resource types separated by commas. Worth trying.
+
 ```bash
 kubectl get deployments,replicasets,pods -n ai-workspace
 ```

@@ -2,7 +2,7 @@
 
 ## The next morning
 
-You wake up earlier than usual. The terminal from last night is still open, the cursor still blinking after the `$`, waiting for the exact command you saved for this morning.
+You wake up earlier than usual. The terminal from last night is still open, the cursor still blinking after the `$`. Next to it, a browser tab is still open too — the "Quick Start" page for `kind`, the first result from last night's final search. You pick up right where you left off, typing it exactly as written, nothing relying on memory.
 
 ```bash
 kind create cluster --name ai-workspace
@@ -32,7 +32,7 @@ ai-workspace-control-plane   Ready    control-plane   52s   v1.31.0
 
 One line. You look at the `ROLES` column: `control-plane`. Just one machine — not "control plane" and "the node that runs containers" as two separate things, the way last night's README described it. Same machine, playing both roles at once, because this is just `kind` simulating a cluster on your laptop. Still true to the description — just the smallest scale possible.
 
-Curious, you type a command that's in no guide at all — just to see what the "thing that watches everything" that Martin and the README kept mentioning actually looks like.
+The guide scrolls on a bit further, mentions using `-n` to point at a specific namespace if you want to look inside the cluster. You try it right away — not to finish the guide anymore, but because you want to see what the "thing that watches everything" Martin and the README kept mentioning actually looks like.
 
 ```bash
 kubectl get pods -n kube-system
@@ -57,7 +57,7 @@ You sit up straight. This isn't a list of abstract concepts anymore — these na
 - `kube-scheduler` — the thing that decides which machine a new container runs on, even though there's only one machine to pick from here.
 - `kube-controller-manager` — where that loop Martin described last night actually runs: "runs forever, constantly checking, fixes it if not."
 
-You try one more thing — poke at the API server itself to see what it says back.
+You try one more thing — poke at the API server itself to see what it says back. `logs` and `--tail` you don't need to look up; you've typed `docker logs --tail` a hundred times. Betting `kubectl` works the same way turns out to be a safe bet.
 
 ```bash
 kubectl get pods -n kube-system -o wide
