@@ -14,7 +14,7 @@ Vừa đặt máy xuống bàn thì standup bắt đầu, trong lúc bạn còn 
 
 Bạn định gõ luôn YAML cho `chat-api` rồi `kubectl apply`, đẩy hết lên cluster cho xong. Nhưng khựng lại — bạn còn chưa thật sự biết `kubectl` có gì ngoài `get nodes` với `get pods`. Ném cả đống thứ vào một cluster mà mình chưa hiểu cách tổ chức, nghe không ổn.
 
-Bạn gõ thử:
+`get nodes`, `get pods` — cùng một chữ `get`. Bạn đánh liều đoán `kubectl` chắc theo một khuôn cố định: `get` cộng với tên loại thứ muốn xem. Thử áp dụng cho thứ chưa từng gõ bao giờ.
 
 ```bash
 kubectl get namespaces
@@ -40,7 +40,23 @@ namespace/ai-workspace created
 
 Namespace, hoá ra, đơn giản hơn bạn tưởng: chỉ là một cách chia cùng một cluster thành nhiều ngăn riêng biệt. `ai-workspace` và `kube-system` vẫn dùng chung một control plane, chung mấy cái node y hệt như lúc nãy — chỉ là tên trong ngăn này không đụng tên trong ngăn kia. Một Pod tên `chat-api` ở `ai-workspace` và một Pod tên `chat-api` ở namespace khác (nếu có) là hai thứ hoàn toàn tách biệt, không xung đột. Không phải cluster riêng — chỉ là ngăn kéo riêng trong cùng một tủ.
 
-Xong việc tổ chức chỗ ở. Giờ đến việc bạn thật sự tò mò: `kubectl` còn biết làm gì mà bạn chưa từng gõ.
+Xong việc tổ chức chỗ ở. Giờ đến việc bạn thật sự tò mò: `kubectl` còn biết làm gì mà bạn chưa từng gõ. Bạn gõ đại `kubectl --help`, chỉ để xem hết danh sách.
+
+```
+Basic Commands (Intermediate):
+  explain         Get documentation for a resource
+  get             Display one or many resources
+  edit            Edit a resource on the server
+  delete          Delete resources by file names, stdin, resources and names, or by resources and label selector
+
+...
+
+Other Commands:
+  api-resources   Print the supported API resources on the server
+  ...
+```
+
+Hai dòng đập vào mắt cùng lúc: `api-resources` và `explain`. Thử cái đầu trước.
 
 ```bash
 kubectl api-resources | head -20
@@ -48,7 +64,7 @@ kubectl api-resources | head -20
 
 Một danh sách dài — `pods`, `deployments`, `services`, `configmaps`, `secrets`, hàng chục cái tên khác bạn còn chưa từng nghe. Đây là bản đồ đầy đủ của mọi thứ Kubernetes biết tạo ra. Bạn không đọc hết, nhưng lưu lại trong đầu: có gì không nhớ, tra ở đây trước.
 
-Bạn thử tiếp một lệnh khác, chỉ vì tò mò `pod` thật ra gồm những gì:
+Giờ tới dòng còn lại. `explain` — "Get documentation for a resource". Thử luôn, chỉ vì tò mò `pod` thật ra gồm những gì:
 
 ```bash
 kubectl explain pod

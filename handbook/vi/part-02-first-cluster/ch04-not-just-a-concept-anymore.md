@@ -2,7 +2,7 @@
 
 ## Sáng hôm sau
 
-Bạn dậy sớm hơn thường lệ. Terminal từ tối qua vẫn còn mở, con trỏ vẫn nhấp nháy sau dấu `$`, chờ đúng cái lệnh bạn để dành lại.
+Bạn dậy sớm hơn thường lệ. Terminal từ tối qua vẫn còn mở, con trỏ vẫn nhấp nháy sau dấu `$`. Cạnh đó là tab trình duyệt cũng còn mở — trang "Quick Start" của `kind`, kết quả đầu tiên sau câu search cuối cùng tối qua. Bạn đọc lại đúng đoạn để dở, gõ y chang, không phải nhớ gì trong đầu cả.
 
 ```bash
 kind create cluster --name ai-workspace
@@ -32,7 +32,7 @@ ai-workspace-control-plane   Ready    control-plane   52s   v1.31.0
 
 Một dòng duy nhất. Bạn nhìn lại cột `ROLES`: `control-plane`. Chỉ một máy — không phải "control plane" và "node chạy container" là hai thứ tách biệt như cái README tối qua mô tả. Cùng một máy, đóng luôn cả hai vai, vì đây chỉ là `kind` giả lập trên laptop của bạn. Thật ra vẫn đúng như mô tả — chỉ là quy mô nhỏ nhất có thể.
 
-Bạn tò mò, gõ thêm một lệnh không nằm trong hướng dẫn nào cả — chỉ vì muốn xem "cái đang theo dõi mọi thứ" mà Martin với cái README nói tới, trông thật sự như thế nào.
+Trang hướng dẫn cuộn tiếp xuống một đoạn nữa, có nhắc: muốn xem bên trong cluster đang chạy gì, dùng `-n` để chỉ định namespace. Bạn thử áp dụng ngay — không phải để hoàn thành hướng dẫn nữa, mà vì muốn xem "cái đang theo dõi mọi thứ" mà Martin với cái README nói tới, trông thật sự như thế nào.
 
 ```bash
 kubectl get pods -n kube-system
@@ -57,7 +57,7 @@ Bạn ngồi thẳng lại. Đây không phải danh sách khái niệm trừu t
 - `kube-scheduler` — cái quyết định container mới chạy ở máy nào, dù ở đây chỉ có đúng một máy để chọn.
 - `kube-controller-manager` — nơi chạy cái vòng lặp Martin tả tối qua, "chạy hoài, kiểm tra liên tục, sai là tự sửa".
 
-Bạn thử một việc nữa — gõ vào chính API server để xem nó trả lời gì.
+Bạn thử một việc nữa — gõ vào chính API server để xem nó trả lời gì. `logs` với `--tail` thì khỏi tra, `docker logs --tail` bạn gõ cả trăm lần rồi, đoán đại là `kubectl` cũng vậy — đúng thật.
 
 ```bash
 kubectl get pods -n kube-system -o wide
