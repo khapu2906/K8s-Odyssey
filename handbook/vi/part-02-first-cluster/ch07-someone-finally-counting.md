@@ -50,6 +50,8 @@ kubectl apply -f chat-api-deployment.yaml
 deployment.apps/chat-api created
 ```
 
+Muốn xem hết mấy tầng cùng lúc, bạn nhớ ra hồi nãy lướt `kubectl --help` có thấy ví dụ gõ nhiều loại resource cách nhau bằng dấu phẩy. Thử luôn.
+
 ```bash
 kubectl get deployments,replicasets,pods -n ai-workspace
 ```
