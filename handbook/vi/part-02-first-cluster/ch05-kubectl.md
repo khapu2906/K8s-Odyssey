@@ -8,7 +8,7 @@ Vừa đặt máy xuống bàn thì standup bắt đầu, trong lúc bạn còn 
 
 > "Sao rồi?" founder hỏi, thấy bạn cắm mặt vào terminal cả buổi sáng.
 
-> "Có cluster chạy trên laptop rồi. Chưa đưa gì lên đó cả."
+> "Em sắp ra rồi, đang thử  chạy trên laptop rồi"
 
 > "Ổn, cứ từ từ." Founder quay sang hỏi người khác, không truy thêm.
 

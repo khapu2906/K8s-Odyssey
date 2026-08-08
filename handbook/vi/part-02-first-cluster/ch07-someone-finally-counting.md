@@ -82,7 +82,7 @@ chat-api-7d8f9c6b4d-8mznw     0/1     CrashLoopBackOff   3          58s
 chat-api-7d8f9c6b4d-r4jkl     0/1     CrashLoopBackOff   3          58s
 ```
 
-Bạn chọn đại một cái, xoá thẳng — đúng kiểu bạn đã làm hồi sáng, chỉ khác lần này có Deployment đứng phía sau.
+Bạn chọn đại một cái, xoá thẳng — đúng kiểu bạn đã làm lúc nãy, chỉ khác lần này có Deployment đứng phía sau.
 
 ```bash
 kubectl delete pod chat-api-7d8f9c6b4d-2xvqk -n ai-workspace
