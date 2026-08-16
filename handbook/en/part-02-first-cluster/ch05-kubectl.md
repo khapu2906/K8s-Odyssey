@@ -8,6 +8,7 @@ You've barely set the laptop down when standup starts, and you're still groggy f
 
 > "How's it going?" the founder asks, having watched you buried in a terminal all morning.
 
+
 > "Got a cluster running on my laptop. Haven't put anything on it yet."
 
 > "Cool, no rush." The founder turns to ask someone else, doesn't push further.
