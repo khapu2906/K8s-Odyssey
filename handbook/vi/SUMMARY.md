@@ -12,3 +12,6 @@
 - [Chương 5. Trước khi vứt cả đống lên đó](part-02-first-cluster/ch05-kubectl.md)
 - [Chương 6. Chạy được 12 giây](part-02-first-cluster/ch06-first-pod.md)
 - [Chương 7. Cuối cùng cũng có người đếm](part-02-first-cluster/ch07-someone-finally-counting.md)
+- [Chương 8. Một cái tên không đổi](part-02-first-cluster/ch08-a-name-that-doesnt-change.md)
+- [Chương 9. Một câu hỏi, một câu trả lời](part-02-first-cluster/ch09-one-question-one-answer.md)
+- [Chương 10. Cái mới không nhớ gì cả](part-02-first-cluster/ch10-the-new-one-remembers-nothing.md)
