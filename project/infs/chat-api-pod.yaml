@@ -13,4 +13,4 @@ spec:
         - containerPort: 8080
       env:
         - name: DATABASE_URL
-          value: postgres://postgres:postgres@host.docker.internal:5432/aiworkspace
+          value: postgres://postgres:postgres@postgres:5432/aiworkspace

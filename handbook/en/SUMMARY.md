@@ -12,3 +12,6 @@
 - [5. Before Dumping Everything On It](part-02-first-cluster/ch05-kubectl.md)
 - [6. Ran For 12 Seconds](part-02-first-cluster/ch06-first-pod.md)
 - [7. Someone's Finally Counting](part-02-first-cluster/ch07-someone-finally-counting.md)
+- [8. A Name That Doesn't Change](part-02-first-cluster/ch08-a-name-that-doesnt-change.md)
+- [9. One Question, One Answer](part-02-first-cluster/ch09-one-question-one-answer.md)
+- [10. The New One Remembers Nothing](part-02-first-cluster/ch10-the-new-one-remembers-nothing.md)
