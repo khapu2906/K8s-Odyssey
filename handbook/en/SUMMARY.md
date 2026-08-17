@@ -15,3 +15,5 @@
 - [8. A Name That Doesn't Change](part-02-first-cluster/ch08-a-name-that-doesnt-change.md)
 - [9. One Question, One Answer](part-02-first-cluster/ch09-one-question-one-answer.md)
 - [10. The New One Remembers Nothing](part-02-first-cluster/ch10-the-new-one-remembers-nothing.md)
+- [11. Attached From the Outside](part-02-first-cluster/ch11-attached-from-the-outside.md)
+- [12. Not Much of a Secret](part-02-first-cluster/ch12-not-much-of-a-secret.md)
