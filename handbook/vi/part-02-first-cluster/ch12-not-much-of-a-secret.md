@@ -2,7 +2,7 @@
 
 ## Mấy ngày sau
 
-Cluster chạy êm suốt mấy ngày, không CrashLoopBackOff nào mới. Sáng nay founder ghé qua bàn, nói chuyện với ai đó về một khách hàng doanh nghiệp đang hỏi "hệ thống lưu password thế nào" trước khi ký hợp đồng. Không nói với bạn, nhưng câu đó lọt vào tai, nằm lại đó cả buổi.
+Cluster chạy êm suốt mấy ngày, không CrashLoopBackOff nào mới. Sáng nay founder ghé qua bàn, nói chuyện với ai đó về một khách hàng doanh nghiệp đang lo ngại về bảo mật hệ thống trước khi ký hợp đồng — hỏi thẳng liệu password có được lưu an toàn không, ai có thể đọc được. Không nói với bạn, nhưng câu đó lọt vào tai, nằm lại đó cả buổi.
 
 Đang định `git add project/infs/` để commit nốt đống YAML mấy hôm nay, bạn dừng tay giữa chừng. Mở lại `postgres.yaml`, nhìn thẳng vào dòng đó — cái dòng đã gõ tay từ Chương 8, chưa từng nghĩ lại:
 

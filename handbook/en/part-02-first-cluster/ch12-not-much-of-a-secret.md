@@ -2,7 +2,7 @@
 
 ## A few days later
 
-The cluster's been quiet for days, no new CrashLoopBackOff. This morning the founder stops by someone's desk, talking about an enterprise customer asking "how does the system store passwords" before signing a contract. Not said to you directly, but it lands anyway, sits there the rest of the morning.
+The cluster's been quiet for days, no new CrashLoopBackOff. This morning the founder stops by someone's desk, talking about an enterprise customer raising security concerns before signing a contract — asking outright whether passwords are actually stored safely, who could read them. Not said to you directly, but it lands anyway, sits there the rest of the morning.
 
 About to `git add project/infs/` to commit the last few days' worth of YAML, you stop halfway through. You open `postgres.yaml` again, look straight at the line you typed back in Chapter 8 and never thought about again:
 
