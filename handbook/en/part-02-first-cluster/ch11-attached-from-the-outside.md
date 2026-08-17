@@ -12,7 +12,13 @@ machines is called "PersistentVolume" (PV) and
 "PersistentVolumeClaim" (PVC)
 ```
 
-Three weeks ago that line was just a name you skimmed past. Now it's exactly what you need, right now.
+Three weeks ago that line was just a name you skimmed past. Now it's exactly what you need, right now. Your eyes drift up a few lines and stop — `Need scaling`, `Need restart`, `Need deployment` — three lines never crossed off, even though `ReplicaSet`/`Deployment` already settled them back when `chat-api-deployment.yaml` got written. You'd just been too busy at the time to come back and check them against this actual list. While you're at it, you cross off all three.
+
+```
+Need scaling ✓ replicas on the Deployment
+Need restart ✓ ReplicaSet recreates the Pod on its own
+Need deployment ✓ Deployment (wraps ReplicaSet + rolling update)
+```
 
 ```bash
 kubectl explain persistentvolumeclaim
@@ -182,7 +188,7 @@ curl -s http://localhost:8080/api/conversations
 
 Still there. The old Pod is gone, the new one has a completely different name, but the data survived — because this time the data was never really *inside* the Pod at all, it lives on the PV, standing outside any single Pod's lifetime. The Pod is just something temporarily attached to it, unplugged when it's done, the disk staying behind waiting for whichever Pod comes next.
 
-You open the notes from the night you read that README, find the line from three weeks ago, cross it off for good.
+You open the notes from the night you read that README, find the line from three weeks ago, cross off one more.
 
 ```
 Need storage ✓ PersistentVolumeClaim asks for a disk, the
@@ -192,4 +198,4 @@ the disk stays intact because it never belonged to any one
 Pod in the first place.
 ```
 
-The line with `???` — "Need observability" — is still untouched. But eight out of nine lines now have a real ✓, not just a theoretical one. You shut the laptop, this time feeling steadier than yesterday afternoon's thin relief.
+Five out of nine lines now have a real ✓, not just a theoretical one — scheduling, secrets, health checks, and observability still left. You shut the laptop, this time feeling steadier than yesterday afternoon's thin relief.

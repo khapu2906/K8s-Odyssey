@@ -158,7 +158,7 @@ curl -s http://localhost:8080/api/conversations
 
 Dữ liệu cũ vẫn còn nguyên, `chat-api` vẫn nối được `postgres` — chỉ có điều giờ không còn dòng nào trong hai file YAML lộ ra password thật nữa.
 
-Bạn mở ghi chú từ tối đọc README, gạch dòng cuối cùng còn sót lại của danh sách chín dòng ba tuần trước:
+Bạn mở ghi chú từ tối đọc README, gạch thêm một dòng nữa trong danh sách chín dòng ba tuần trước:
 
 ```
 Need secrets ✓ Secret — chỉ base64, KHÔNG PHẢI mã hoá, ai
@@ -168,4 +168,4 @@ DATABASE_URL không thể trộn Secret giữa chuỗi được, phải tách
 riêng từng biến — chat-api/src/db.js đổi luôn.
 ```
 
-Chín dòng ba tuần trước, giờ tám dòng đã có dấu ✓. Chỉ còn đúng một dòng `???` — "Need observability" — vẫn y nguyên như lúc mới viết, chưa đụng tới. Bạn `git add` lại `project/`, lần này an tâm hơn hẳn lúc nãy.
+Chín dòng ba tuần trước, giờ sáu dòng đã có dấu ✓ — còn lại scheduling, health checks, và đúng dòng `???` — "Need observability" — vẫn y nguyên như lúc mới viết, chưa đụng tới. Bạn `git add` lại `project/`, lần này an tâm hơn hẳn lúc nãy.

@@ -11,7 +11,13 @@ dữ liệu lâu dài dù container chết/dời máy thì gọi là
 "PersistentVolume" (PV) và "PersistentVolumeClaim" (PVC)
 ```
 
-Ba tuần trước dòng này chỉ là một cái tên nghe qua. Giờ nó là đúng thứ bạn cần, ngay lúc này.
+Ba tuần trước dòng này chỉ là một cái tên nghe qua. Giờ nó là đúng thứ bạn cần, ngay lúc này. Lướt mắt lên mấy dòng phía trên, bạn khựng lại — `Need scaling`, `Need restart`, `Need deployment` — ba dòng này chưa từng gạch, dù `ReplicaSet`/`Deployment` đã giải quyết xong xuôi từ hồi viết `chat-api-deployment.yaml`. Chỉ là lúc đó bạn mải làm, quên quay lại đối chiếu với đúng cái danh sách gốc này. Tiện tay, bạn gạch luôn cả ba.
+
+```
+Need scaling ✓ replicas trong Deployment
+Need restart ✓ ReplicaSet tự tạo lại Pod
+Need deployment ✓ Deployment (bọc ReplicaSet + rolling update)
+```
 
 ```bash
 kubectl explain persistentvolumeclaim
@@ -181,7 +187,7 @@ curl -s http://localhost:8080/api/conversations
 
 Còn nguyên. Pod cũ đã biến mất, Pod mới hoàn toàn khác tên, nhưng dữ liệu vẫn ở đó — vì lần này dữ liệu chưa bao giờ thực sự nằm *trong* Pod cả, nó nằm ở PV, đứng ngoài vòng đời của bất kỳ Pod nào. Pod chỉ là cái gắn tạm vào, dùng xong tháo ra, ổ đĩa vẫn ở lại chờ Pod tiếp theo tới gắn vào.
 
-Bạn mở ghi chú từ tối hôm đọc README, tìm đúng dòng ba tuần trước, gạch phát cuối cùng:
+Bạn mở ghi chú từ tối hôm đọc README, tìm đúng dòng ba tuần trước, gạch thêm một dòng nữa:
 
 ```
 Need storage ✓ PersistentVolumeClaim xin ổ đĩa, cluster tự
@@ -190,4 +196,4 @@ Pod chết đi thay Pod khác, ổ đĩa vẫn còn nguyên vì nó chưa
 từng thuộc về Pod nào cả.
 ```
 
-Dòng có dấu `???` — "Need observability" — vẫn còn nguyên, chưa động tới. Nhưng tám trên chín dòng giờ đã có chữ ✓ thật sự, không chỉ trên lý thuyết nữa. Bạn đóng laptop, lần này thấy vững hơn hẳn cảm giác nhẹ nhõm hời hợt của chiều hôm qua.
+Năm trên chín dòng giờ đã có chữ ✓ thật sự, không chỉ trên lý thuyết nữa — còn lại scheduling, secrets, health checks, và observability. Bạn đóng laptop, lần này thấy vững hơn hẳn cảm giác nhẹ nhõm hời hợt của chiều hôm qua.

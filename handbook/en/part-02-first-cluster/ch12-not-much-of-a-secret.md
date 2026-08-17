@@ -158,7 +158,7 @@ curl -s http://localhost:8080/api/conversations
 
 The old data is still there, `chat-api` still connects to `postgres` fine — just neither YAML file has a real password sitting in it anymore.
 
-You open the notes from the night you read that README, cross off the last remaining line from that nine-line list, three weeks old now:
+You open the notes from the night you read that README, cross off one more line from that nine-line list, three weeks old now:
 
 ```
 Need secrets ✓ Secret — just base64, NOT encryption, anyone
@@ -169,4 +169,4 @@ Secret into the middle of a string, had to split it into
 separate variables — chat-api/src/db.js changed too.
 ```
 
-Nine lines three weeks ago, eight of them checked off now. Only one `???` left — "Need observability" — untouched, exactly as it was the night it got written. You `git add` `project/` again, feeling a lot steadier about it than you did an hour ago.
+Nine lines three weeks ago, six of them checked off now — scheduling, health checks, and the `???` — "Need observability" — still left, untouched exactly as they were the night that list got written. You `git add` `project/` again, feeling a lot steadier about it than you did an hour ago.
