@@ -15,4 +15,5 @@
 - [Chương 8. Một cái tên không đổi](part-02-first-cluster/ch08-a-name-that-doesnt-change.md)
 - [Chương 9. Một câu hỏi, một câu trả lời](part-02-first-cluster/ch09-one-question-one-answer.md)
 - [Chương 10. Cái mới không nhớ gì cả](part-02-first-cluster/ch10-the-new-one-remembers-nothing.md)
-
+- [Chương 11. Gắn từ bên ngoài vào](part-02-first-cluster/ch11-attached-from-the-outside.md)
+- [Chương 12. Bí mật không hẳn là bí mật](part-02-first-cluster/ch12-not-much-of-a-secret.md)
