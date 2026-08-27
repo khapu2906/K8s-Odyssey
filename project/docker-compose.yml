@@ -16,8 +16,17 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=aiworkspace
+      - JWT_SECRET=dev-secret-not-for-real-use
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
       - postgres
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
 
   postgres:
     image: postgres:16

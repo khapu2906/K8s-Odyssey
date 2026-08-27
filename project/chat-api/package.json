@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.13.0",
+    "bcryptjs": "^2.4.3",
     "drizzle-orm": "^0.33.0",
     "hono": "^4.6.0",
-    "pg": "^8.12.0"
+    "pg": "^8.12.0",
+    "redis": "^4.7.0"
   }
 }

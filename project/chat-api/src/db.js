@@ -20,12 +20,36 @@ export async function initSchema(retries = 10, delayMs = 1000) {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       await pool.query(`
+        CREATE TABLE IF NOT EXISTS users (
+          id SERIAL PRIMARY KEY,
+          email TEXT NOT NULL UNIQUE,
+          password_hash TEXT NOT NULL,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        )
+      `);
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS documents (
+          id SERIAL PRIMARY KEY,
+          user_id INTEGER NOT NULL REFERENCES users(id),
+          filename TEXT NOT NULL,
+          content TEXT NOT NULL,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        )
+      `);
+      await pool.query(`
         CREATE TABLE IF NOT EXISTS conversations (
           id SERIAL PRIMARY KEY,
           message TEXT NOT NULL,
           reply TEXT NOT NULL,
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         )
+      `);
+      // conversations existed before users did — ALTER instead of redefining
+      // the CREATE TABLE, so real data from before this column existed
+      // survives instead of getting wiped.
+      await pool.query(`
+        ALTER TABLE conversations
+        ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)
       `);
       return;
     } catch (err) {
