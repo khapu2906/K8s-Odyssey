@@ -9,7 +9,7 @@
 
 Kubernetes Odyssey is a story-driven Kubernetes book. Instead of a reference manual, it follows a single engineer's journey at a startup — a project called **AI Workspace** — from a `docker compose up` monolith to a production-grade platform on Kubernetes. No separate theory sections, no reference-manual structure: every chapter is one continuous scene, written in second person, where you hit a real problem, investigate it, and solve it.
 
-**Status: 🚧 early writing.** Chapter 1 is written, in both English and Vietnamese. The rest of the book is being written one chapter at a time, in order — not pre-scaffolded. Full design rationale lives in [`outline.md`](./outline.md).
+**Status: 🚧 in progress.** Part I (Foundation) and Part II (First Cluster) are written, in both English and Vietnamese — 23 chapters so far. The rest of the book is being written one chapter, and one Part, at a time — not pre-scaffolded. Full design rationale lives in [`outline.md`](./outline.md).
 
 The book is maintained in two languages, in parallel: [`handbook/en/`](./handbook/en/) and [`handbook/vi/`](./handbook/vi/) — both complete editions, not one translated from the other.
 
