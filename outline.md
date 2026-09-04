@@ -44,7 +44,7 @@ Pillars that keep the book consistent:
 
 AI Workspace was chosen (fits the "Odyssey" brand, big enough to cover all 10 Parts) over TaskFlow/BookHub. To avoid breaking the "5-minute understanding" rule, **the domain must reveal itself gradually, matching the architecture's own evolution** — never exposing every component up front.
 
-### Stage 1 — Monolith (Chapters 4–9, Part I–II)
+### Stage 1 — Monolith (Chapters 4–16, Part II)
 
 ```mermaid
 flowchart LR
@@ -54,7 +54,7 @@ flowchart LR
 
 Product: "ask the AI, save the conversation history." No Auth, no Billing. Understandable in 5 minutes.
 
-### Stage 2 — Modular monolith (Chapters 10–18, Part III)
+### Stage 2 — Modular monolith (Chapters 17–23, Part II)
 
 ```mermaid
 flowchart TD
@@ -68,7 +68,7 @@ flowchart TD
 
 Why it appears: need login (Auth), need session cache/rate-limiting (Redis), need to upload documents to ask the AI about (Document). Still one service, one deployable.
 
-### Stage 3 — Microservices (Chapters 19–34, Part IV–VI)
+### Stage 3 — Microservices (Part III onward, chapters not yet planned)
 
 ```mermaid
 flowchart TD
@@ -107,20 +107,15 @@ Not every chapter changes `project/`'s code — Part I (Chapters 1–3) is pure 
 
 ## 4. Roadmap by Part
 
-| Part | Topic | Chapters |
-|---|---|---|
-| I | Foundation | 1–3 |
-| II | First Cluster | 4–9 |
-| III | Making the Project Real | 10–16 |
-| IV | Networking | 17–22 |
-| V | Production (Observability) | 23–28 |
-| VI | CI/CD | 29–34 |
-| VII | Security | 35–39 |
-| VIII | Multi-Cluster & Cloud | 40–46 |
-| IX | Platform Engineering | 47–50 |
-| X | Under the Hood | 51–63 |
+| Part | Topic | Chapters | Status |
+|---|---|---|---|
+| I | Foundation | 1–3 | Done |
+| II | First Cluster | 4–23 | Done — grew far past the original 4–9 estimate; ended up covering the full Stage 1 + Stage 2 arc (Pod/Deployment/Service/storage/Secret/probes/scheduling/observability, then Auth/Documents/Redis/Ingress) |
+| III+ | Not planned in detail yet | TBD | Decided one Part at a time, as we get there |
 
-Part X (Under the Hood) will get its own separate mini-Kubernetes-in-Go project when we actually reach it — not scaffolded ahead of time.
+Earlier drafts of this table pre-assigned fixed chapter ranges to Parts III–X (Networking, Observability, CI/CD, Security, Multi-Cluster & Cloud, Platform Engineering, Under the Hood). That table turned out to be wrong the moment real writing started — Part II alone needed 20 chapters instead of 6. Per §3 ("chapters are written one at a time, when we get there"), the same discipline now applies at the Part level too: the next Part's topic and scope get decided when Part II is actually finished, not pre-scaffolded here. The rough **subject areas** still worth covering eventually (networking depth, observability, CI/CD, security, multi-cluster/cloud, platform engineering, Kubernetes internals) remain a useful idea backlog — just not a chapter-numbered commitment.
+
+A mini-Kubernetes-in-Go deep-dive is still the plan for whenever an "Under the Hood" Part actually gets reached — its own separate project, not scaffolded ahead of time.
 
 ---
 

@@ -27,3 +27,4 @@
 - [20. Only You Can Open It](part-02-first-cluster/ch20-only-you-can-open-it.md)
 - [21. Rebuilt From Scratch](part-02-first-cluster/ch21-rebuilt-from-scratch.md)
 - [22. No More curl](part-02-first-cluster/ch22-no-more-curl.md)
+- [23. Not As Simple As It Used To Be](part-02-first-cluster/ch23-not-as-simple-as-it-used-to-be.md)

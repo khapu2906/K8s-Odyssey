@@ -27,3 +27,4 @@
 - [Chương 20. Chỉ mình bạn mở được](part-02-first-cluster/ch20-only-you-can-open-it.md)
 - [Chương 21. Xây lại từ đầu](part-02-first-cluster/ch21-rebuilt-from-scratch.md)
 - [Chương 22. Không cần curl nữa](part-02-first-cluster/ch22-no-more-curl.md)
+- [Chương 23. Không đơn giản như xưa nữa](part-02-first-cluster/ch23-not-as-simple-as-it-used-to-be.md)
