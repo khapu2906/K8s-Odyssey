@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 2
+  replicas: {{ .Values.frontend.replicas }}
   selector:
     matchLabels:
       app: frontend
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ai-workspace/frontend:dev
+          image: "{{ .Values.frontend.image }}:{{ .Values.frontend.tag }}"
           ports:
             - containerPort: 3000
           readinessProbe:
@@ -24,18 +24,17 @@ spec:
               port: 3000
           resources:
             requests:
-              cpu: "50m"
-              memory: "64Mi"
+              cpu: {{ .Values.frontend.resources.requests.cpu }}
+              memory: {{ .Values.frontend.resources.requests.memory }}
             limits:
-              cpu: "100m"
-              memory: "128Mi"
-
+              cpu: {{ .Values.frontend.resources.limits.cpu }}
+              memory: {{ .Values.frontend.resources.limits.memory }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     app: frontend

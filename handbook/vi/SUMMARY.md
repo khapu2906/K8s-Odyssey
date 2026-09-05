@@ -28,3 +28,16 @@
 - [Chương 21. Xây lại từ đầu](part-02-first-cluster/ch21-rebuilt-from-scratch.md)
 - [Chương 22. Không cần curl nữa](part-02-first-cluster/ch22-no-more-curl.md)
 - [Chương 23. Không đơn giản như xưa nữa](part-02-first-cluster/ch23-not-as-simple-as-it-used-to-be.md)
+
+# Phần III — Quan sát hệ thống
+- [Chương 24. Không chỉ là ảnh chụp nữa](part-03-observability/ch24-no-longer-just-a-snapshot.md)
+- [Chương 25. Cuối cùng có ai báo](part-03-observability/ch25-finally-someone-tells-you.md)
+- [Chương 26. Nhật ký sống lâu hơn Pod](part-03-observability/ch26-the-log-outlives-the-pod.md)
+
+# Phần IV — CI/CD
+- [Chương 27. Cloud không với tới laptop này](part-04-cicd/ch27-the-cloud-cant-reach-this-laptop.md)
+- [Chương 28. Đếm luôn cả YAML](part-04-cicd/ch28-counting-the-yaml-too.md)
+- [Chương 29. Một chart, hai môi trường](part-04-cicd/ch29-one-chart-two-environments.md)
+- [Chương 30. Hai cluster, một chỗ nhìn](part-04-cicd/ch30-two-clusters-one-place-to-look.md)
+- [Chương 31. Chỉ 10% nhận trước](part-04-cicd/ch31-only-10-percent-get-it-first.md)
+- [Chương 32. Không còn là localhost nữa](part-04-cicd/ch32-no-longer-just-localhost.md)

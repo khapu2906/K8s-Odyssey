@@ -1,0 +1,10 @@
+namespace: ai-workspace-staging
+
+chatApi:
+  replicas: 1
+  resources:
+    requests: { cpu: 50m, memory: 64Mi }
+    limits: { cpu: 100m, memory: 128Mi }
+
+frontend:
+  replicas: 1

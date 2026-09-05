@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
@@ -15,23 +15,22 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:7-alpine
+          image: {{ .Values.redis.image }}
           ports:
             - containerPort: 6379
           resources:
             requests:
-              cpu: "50m"
-              memory: "64Mi"
+              cpu: {{ .Values.redis.resources.requests.cpu }}
+              memory: {{ .Values.redis.resources.requests.memory }}
             limits:
-              cpu: "100m"
-              memory: "128Mi"
-
+              cpu: {{ .Values.redis.resources.limits.cpu }}
+              memory: {{ .Values.redis.resources.limits.memory }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: redis
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     app: redis

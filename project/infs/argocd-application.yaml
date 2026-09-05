@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ai-workspace
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/khapu2906/kubernetes-odyssey
+    targetRevision: main
+    path: project/chart
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ai-workspace
+  syncPolicy:
+    automated:
+      selfHeal: true

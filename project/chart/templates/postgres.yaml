@@ -1,8 +1,20 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+  namespace: {{ .Values.namespace }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.postgres.storage }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
@@ -15,7 +27,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:16
+          image: {{ .Values.postgres.image }}
           ports:
             - containerPort: 5432
           env:
@@ -31,22 +43,21 @@ spec:
               mountPath: /var/lib/postgresql/data
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              cpu: {{ .Values.postgres.resources.requests.cpu }}
+              memory: {{ .Values.postgres.resources.requests.memory }}
             limits:
-              cpu: "250m"
-              memory: "256Mi"
+              cpu: {{ .Values.postgres.resources.limits.cpu }}
+              memory: {{ .Values.postgres.resources.limits.memory }}
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: postgres-data
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     app: postgres

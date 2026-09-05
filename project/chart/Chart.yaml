@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ai-workspace
+description: The AI Workspace stack — chat-api, postgres, redis, frontend
+version: 0.1.0

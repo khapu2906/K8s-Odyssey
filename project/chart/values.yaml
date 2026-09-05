@@ -1,0 +1,30 @@
+namespace: ai-workspace
+
+chatApi:
+  image: ghcr.io/khapu2906/kubernetes-odyssey/chat-api
+  tag: latest
+  replicas: 3
+  resources:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 250m, memory: 256Mi }
+
+postgres:
+  image: postgres:16
+  storage: 1Gi
+  resources:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 250m, memory: 256Mi }
+
+redis:
+  image: redis:7-alpine
+  resources:
+    requests: { cpu: 50m, memory: 64Mi }
+    limits: { cpu: 100m, memory: 128Mi }
+
+frontend:
+  image: ai-workspace/frontend
+  tag: dev
+  replicas: 2
+  resources:
+    requests: { cpu: 50m, memory: 64Mi }
+    limits: { cpu: 100m, memory: 128Mi }

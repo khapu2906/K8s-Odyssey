@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chat-api
-  namespace: ai-workspace
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.chatApi.replicas }}
   selector:
     matchLabels:
       app: chat-api
@@ -12,13 +12,16 @@ spec:
     metadata:
       labels:
         app: chat-api
+        version: v1
     spec:
       containers:
         - name: chat-api
-          image: ai-workspace/chat-api:dev
+          image: "{{ .Values.chatApi.image }}:{{ .Values.chatApi.tag }}"
           ports:
             - containerPort: 8080
           env:
+            - name: APP_VERSION
+              value: v1
             - name: POSTGRES_HOST
               value: postgres
             - name: POSTGRES_PORT
@@ -55,8 +58,20 @@ spec:
             periodSeconds: 10
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              cpu: {{ .Values.chatApi.resources.requests.cpu }}
+              memory: {{ .Values.chatApi.resources.requests.memory }}
             limits:
-              cpu: "250m"
-              memory: "256Mi"
+              cpu: {{ .Values.chatApi.resources.limits.cpu }}
+              memory: {{ .Values.chatApi.resources.limits.memory }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-api
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: chat-api
+  ports:
+    - port: 8080
+      targetPort: 8080

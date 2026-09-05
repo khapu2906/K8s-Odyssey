@@ -1,0 +1,34 @@
+name: chat-api CI/CD
+
+on:
+  push:
+    branches: [main]
+    paths: ["project/chat-api/**"]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build and push
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}/chat-api:${{ github.sha }} project/chat-api
+          docker push ghcr.io/${{ github.repository }}/chat-api:${{ github.sha }}
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump image tag in manifest
+        run: |
+          sed -i "s|image: ghcr.io/.*/chat-api:.*|image: ghcr.io/${{ github.repository }}/chat-api:${{ github.sha }}|" project/infs/chat-api-deployment.yaml
+          git config user.name "chat-api-ci"
+          git config user.email "ci@ai-workspace.dev"
+          git add project/infs/chat-api-deployment.yaml
+          git commit -m "deploy chat-api ${{ github.sha }}"
+          git push
