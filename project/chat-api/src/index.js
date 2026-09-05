@@ -112,7 +112,7 @@ app.post("/api/chat", async (c) => {
     .values({ userId, message, reply })
     .returning();
 
-  return c.json(conversation);
+  return c.json({ ...conversation, servedBy: process.env.APP_VERSION || "unknown" });
 });
 
 app.get("/api/conversations", async (c) => {

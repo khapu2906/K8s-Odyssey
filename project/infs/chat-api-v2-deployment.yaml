@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-api-v2
+  namespace: ai-workspace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-api
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: chat-api
+        version: v2
+    spec:
+      containers:
+        - name: chat-api
+          image: ghcr.io/khapu2906/kubernetes-odyssey/chat-api:v2
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_VERSION
+              value: v2
+            - name: POSTGRES_HOST
+              value: postgres
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_DB
+              value: aiworkspace
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: chat-api-secret
+                  key: JWT_SECRET
+            - name: REDIS_HOST
+              value: redis
+            - name: REDIS_PORT
+              value: "6379"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
